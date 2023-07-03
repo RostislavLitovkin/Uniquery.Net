@@ -1,4 +1,5 @@
-﻿using Uniquery;
+﻿// This is a sample of how to use Uniquery
 
-Rmrk rmrk = new Rmrk();
-rmrk.Hello();
+Uniquery.Rmrk.Hello();
+
+Console.ReadKey();

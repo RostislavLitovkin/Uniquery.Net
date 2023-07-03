@@ -10,7 +10,7 @@ namespace Uniquery
             "https://squid.subsquid.io/rubick/graphql", new NewtonsoftJsonSerializer()
             );
 
-        public void Hello()
+        public static void Hello()
         {
             Console.WriteLine("Hello there!");
         }
