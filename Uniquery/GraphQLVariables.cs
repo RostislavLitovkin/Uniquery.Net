@@ -3,7 +3,7 @@ namespace Uniquery
 {
 	public class GraphQLVariables
 	{
-		public string where { get; set; }
+		public object where { get; set; }
 
 		public int limit { get; set; }
 
