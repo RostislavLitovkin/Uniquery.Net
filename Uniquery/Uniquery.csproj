@@ -11,4 +11,12 @@
     <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Rmrk\" />
+    <None Remove="RmrkV2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Rmrk\" />
+    <Folder Include="RmrkV2\" />
+  </ItemGroup>
 </Project>

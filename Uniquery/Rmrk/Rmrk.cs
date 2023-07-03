@@ -4,11 +4,13 @@ using System.Net;
 
 namespace Uniquery
 {
-    public class Rmrk
+    public static class Rmrk
     {
-        private readonly static GraphQLHttpClient _client = new GraphQLHttpClient(
+        // GraphQL client that is always available.
+        // This is an optimisation - reinitialization of the client is bad practice.
+        public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
             "https://squid.subsquid.io/rubick/graphql", new NewtonsoftJsonSerializer()
-            );
+        );
 
         public static void Hello()
         {
