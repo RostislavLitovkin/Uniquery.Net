@@ -23,7 +23,7 @@ namespace Uniquery
 
         public override string ToString()
         {
-            return "Rmrk nft: " + Name + " by " + Issuer
+            return "Rmrk collection: " + Name + " by " + Issuer + " (id: " + Id + ")"
                 + "\n" + (Meta != null ? "Description : " + Meta.Description : "Metadata: " + Metadata) + "\n";
         }
     }

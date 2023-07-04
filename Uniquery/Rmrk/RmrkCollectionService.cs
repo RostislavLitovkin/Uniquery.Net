@@ -77,9 +77,8 @@ namespace Uniquery
             {
                 foreach (var error in graphQLResponse.Errors)
                 {
-                    Console.WriteLine(error.Message);
+                    throw new Exception(error.Message);
                 }
-                throw new Exception("");
             }
             return graphQLResponse.Data.CollectionEntities;
         }

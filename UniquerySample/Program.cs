@@ -23,5 +23,15 @@ foreach (var collection in collections)
 
 Console.WriteLine(await Uniquery.Rmrk.CollectionById("7EA1DCF47E98A25067-CAVE"));
 
+
+Console.WriteLine(await Uniquery.Rmrk.NftById("18636665-C4F63647002B182C0E-WOLF4-WOLF4_2-0000000000000002"));
+
+var nfts = await Uniquery.Rmrk.NftListByCollectionId("A4EC02A6BEF317A726-ACCTT");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
 Console.ReadKey();
 
