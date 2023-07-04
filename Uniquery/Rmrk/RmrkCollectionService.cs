@@ -15,7 +15,7 @@ namespace Uniquery
         }
 
         public static async Task<List<RmrkCollection>> GetCollectionEntitiesAsync(
-            RmrkCollectionFilter filter,
+            object filter,
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC"

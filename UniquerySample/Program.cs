@@ -1,6 +1,6 @@
 ﻿// This is a sample of how to use Uniquery
 
-var collections = await Uniquery.RmrkCollectionService.GetCollectionEntitiesAsync(null);
+var collections = await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
 
 foreach (var collection in collections)
 {
