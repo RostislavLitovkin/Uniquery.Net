@@ -6,7 +6,7 @@ Without Uniquery you would have to write something like this:
 
 ```GraphQL
 query itemListByCollectionIdList {
-  nft: nftEntities(where: {collection: { id_eq: "2305670031" }}) {
+  nft: nftEntities(where: { collection: { id_eq: "7EA1DCF47E98A25067-CAVE" }}) {
     id
     metadata
     currentOwner
@@ -17,8 +17,8 @@ query itemListByCollectionIdList {
 With Uniquery you can write this:
 
 ```C#
-int id = 2305670031;
-var collections = Uniquery.Rmrk.ItemListByCollectionId(id);
+string id = "7EA1DCF47E98A25067-CAVE";
+var collections = await Uniquery.Rmrk.ItemListByCollectionId(id);
 ```
 
 One of the cozy improvements over the original Kodadot Uniquery is the inclusion of `Uniquery.Universal`,
