@@ -28,8 +28,10 @@ namespace Uniquery
         [JsonPropertyName("meta")]
         public string Meta { get; set; }
 
-        [JsonPropertyName("nft")]
-        public RmrkNft Nft { get; set; }
+        public override string ToString()
+        {
+            return "Rmrk event: " + Interaction + " - " + Id + "\n";
+        }
     }
 
 }

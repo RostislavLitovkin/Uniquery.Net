@@ -358,5 +358,134 @@ namespace Uniquery
 
             return nfts;
         }
+
+        /// <summary>
+        /// returns all events
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.EventList();
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkEvent>> EventList(
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { };
+
+            var events = await RmrkEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return events;
+        }
+
+        /// <summary>
+        ///  returns events by address
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.EventListByAddress("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkEvent>> EventListByAddress(
+            string address,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { caller_eq = address };
+
+            var events = await RmrkEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by collection id
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.EventListByCollectionId("C4F63647002B182C0E-NEON");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkEvent>> EventListByCollectionId(
+            string collectionId,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { nft = new { collection = new { id_eq = collectionId } } };
+
+        var events = await RmrkEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by interaction
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.Buy);
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkEvent>> EventListByInteraction(
+            RmrkInteraction interaction,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { interaction_eq = interaction };
+
+            var events = await RmrkEventService.GetEventEntitiesAsync(
+                    filter,
+                    limit,
+                    offset,
+                    orderBy
+                    );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by nft id
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.EventListByNftId("18641451-C4F63647002B182C0E-WOLF-WOLF_2-0000000000000002");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkEvent>> EventListByNftId(
+            string id,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { nft = new { id_eq = id } };
+
+            var events = await RmrkEventService.GetEventEntitiesAsync(
+                    filter,
+                    limit,
+                    offset,
+                    orderBy
+                    );
+
+            return events;
+        }
     }
 }
