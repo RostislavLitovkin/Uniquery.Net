@@ -74,5 +74,59 @@ namespace Uniquery
 
             return collections;
         }
+
+        /// <summary>
+        /// returns collections where name contains provided name
+        /// <exception>
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.CollectionListByName("Shaban");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkCollection>> CollectionListByName(
+            string collectionName,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC")
+        {
+            var filter = new { name_containsInsensitive = collectionName };
+
+            var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return collections;
+        }
+
+        /// <summary>
+        /// returns collections where owner is equal to provided address
+        /// <exception>
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.CollectionListByOwner("D5QWdFqn5FUaGFvgKGKtx8X4z1PVuXo8ZoGdhhCwc1vGJ3e");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkCollection>> CollectionListByOwner(
+            string owner,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC")
+        {
+            var filter = new { currentOwner_eq = owner };
+
+            var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return collections;
+        }
     }
 }
