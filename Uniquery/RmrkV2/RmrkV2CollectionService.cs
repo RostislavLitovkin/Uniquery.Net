@@ -25,8 +25,6 @@ namespace Uniquery
         {
             GraphQLRequest request = new GraphQLRequest
             {
-
-
                 Query = @"
                     query MyQuery ($limit: Int!, $offset: Int!, $where: CollectionEntityWhereInput, $orderBy: [CollectionEntityOrderByInput!]!) {
                       collectionEntities(limit: $limit, offset: $offset, where: $where, orderBy: $orderBy) {

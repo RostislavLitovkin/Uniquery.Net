@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace Uniquery
@@ -64,5 +65,55 @@ namespace Uniquery
         [JsonPropertyName("version")]
         public string Version { get; set; }
 
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine($"BlockNumber: {BlockNumber}");
+            stringBuilder.AppendLine($"CreatedAt: {CreatedAt}");
+            stringBuilder.AppendLine($"CurrentOwner: {CurrentOwner}");
+
+            if (Events != null && Events.Count > 0)
+            {
+                stringBuilder.AppendLine("Events:");
+                foreach (var e in Events)
+                {
+                    stringBuilder.AppendLine($"\t{e}");
+                }
+            }
+
+            stringBuilder.AppendLine($"Hash: {Hash}");
+            stringBuilder.AppendLine($"Id: {Id}");
+            stringBuilder.AppendLine($"Image: {Image}");
+            stringBuilder.AppendLine($"Issuer: {Issuer}");
+            stringBuilder.AppendLine($"Max: {Max}");
+            stringBuilder.AppendLine($"Media: {Media}");
+    
+            if(Meta != null)
+            {
+                stringBuilder.AppendLine($"Meta: {Meta}");
+            }
+
+            stringBuilder.AppendLine($"Metadata: {Metadata}");
+            stringBuilder.AppendLine($"Name: {Name}");
+            stringBuilder.AppendLine($"NftCount: {NftCount}");
+
+            // Uncomment if Nfts are implemented
+            // if(Nfts != null && Nfts.Count > 0)
+            // {
+            //     stringBuilder.AppendLine("Nfts:");
+            //     foreach(var nft in Nfts)
+            //     {
+            //         stringBuilder.AppendLine($"\t{nft}");
+            //     }
+            // }
+
+            stringBuilder.AppendLine($"Supply: {Supply}");
+            stringBuilder.AppendLine($"Symbol: {Symbol}");
+            stringBuilder.AppendLine($"UpdatedAt: {UpdatedAt}");
+            stringBuilder.AppendLine($"Version: {Version}");
+
+            return stringBuilder.ToString();
+        }
     }
 }

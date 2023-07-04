@@ -14,8 +14,20 @@ namespace Uniquery
             "https://squid.subsquid.io/marck/v/v2/graphql", new NewtonsoftJsonSerializer()
         );
 
-
-        public static async Task<RmrkCollection> CollectionById(
+        /// <summary>
+        /// Returns collection by id.
+        /// <exception>
+        /// <para>
+        /// Throws Exception if no collection with the same id was found.
+        /// </para>
+        /// </exception>
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.CollectionById("7EA1DCF47E98A25067-CAVE");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<RmrkV2Collection> CollectionById(
             string id,
             int limit = 25,
             int offset = 0,
@@ -23,7 +35,7 @@ namespace Uniquery
         {
             var filter = new { id_eq = id };
 
-            var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
+            var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
                 offset,
@@ -32,6 +44,7 @@ namespace Uniquery
 
             if (!collections.Any())
             {
+                Console.WriteLine("No collection found.");
                 throw new Exception("No collection found.");
             }
 
