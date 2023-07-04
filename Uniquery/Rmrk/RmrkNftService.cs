@@ -23,15 +23,19 @@ namespace Uniquery
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
+            bool forSale = false,
             int eventsLimit = 10,
             int emotesLimit = 10
         )
         {
+
             GraphQLRequest request = new GraphQLRequest
             {
                 Query = @"
-                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $emotesLimit: Int!) {
-                      nftEntities(limit: $limit, offset: $offset, where: $where, orderBy: $orderBy) {
+                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput!, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $emotesLimit: Int!) {
+                      nftEntities(limit: $limit, offset: $offset, where: " +
+                        (forSale ? @"{ OR: [ { price_not_eq: ""0"" }, $where] }" : "$where")
+                      + @", orderBy: $orderBy) {
                         blockNumber
                         burned
                         createdAt
@@ -87,6 +91,8 @@ namespace Uniquery
                     emotesLimit = emotesLimit,
                 },
             };
+
+            Console.WriteLine(request.Query);
 
             var graphQLResponse = await Rmrk.client.SendQueryAsync<ResponseType>(request);
 
