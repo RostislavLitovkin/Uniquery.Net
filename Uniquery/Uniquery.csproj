@@ -17,6 +17,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rmrk\" />
-    <Folder Include="RmrkV2\" />
   </ItemGroup>
 </Project>
