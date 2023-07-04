@@ -55,7 +55,7 @@ namespace Uniquery
         /// returns collections where issuer (creator) is equal to provided address
         /// <example>
         /// <code>
-        /// await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
+        /// await Uniquery.RmrkV2.CollectionListByIssuer("F5DaGLPBkroG9tYGZPaaAaQWqzkNgJgjrz17FAmk1EVNKn9");
         /// </code>
         /// </example>
         /// </summary>
@@ -66,6 +66,59 @@ namespace Uniquery
             string orderBy = "updatedAt_DESC")
         {
             var filter = new { issuer_eq = issuerAddress };
+
+            var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return collections;
+        }
+
+        /// <summary>
+        /// returns collections where name contains provided name
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.CollectionListByName("African Arts & Culture");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Collection>> CollectionListByName(
+            string collectionName,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC")
+        {
+            var filter = new { name_containsInsensitive = collectionName };
+
+            var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return collections;
+        }
+
+
+        /// <summary>
+        /// returns collections where owner is equal to provided address
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.CollectionListByOwner("F5DaGLPBkroG9tYGZPaaAaQWqzkNgJgjrz17FAmk1EVNKn9");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Collection>> CollectionListByOwner(
+            string owner,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC")
+        {
+            var filter = new { currentOwner_eq = owner };
 
             var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
                 filter,
