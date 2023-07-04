@@ -23,7 +23,7 @@ namespace Uniquery
         /// </exception>
         /// <example>
         /// <code>
-        /// await Uniquery.RmrkV2.CollectionById("7EA1DCF47E98A25067-CAVE");
+        /// await Uniquery.RmrkV2.CollectionById("ccae98d28cd76f9015-GRAFF");
         /// </code>
         /// </example>
         /// </summary>
@@ -49,6 +49,32 @@ namespace Uniquery
             }
 
             return collections[0];
+        }
+
+        /// <summary>
+        /// returns collections where issuer (creator) is equal to provided address
+        /// <example>
+        /// <code>
+        /// await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Collection>> CollectionListByIssuer(
+            string issuerAddress,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC")
+        {
+            var filter = new { issuer_eq = issuerAddress };
+
+            var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return collections;
         }
     }
 }
