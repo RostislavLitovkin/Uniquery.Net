@@ -11,13 +11,13 @@ namespace Uniquery
         //public string Attributes { get; set; }
 
         [JsonPropertyName("bundle_created")]
-        public int Bundle_Created { get; set; }
+        public int? Bundle_Created { get; set; }
 
         [JsonPropertyName("burned")]
-        public bool Burned { get; set; }
+        public bool? Burned { get; set; }
 
         [JsonPropertyName("children_count")]
-        public int Children_Count { get; set; }
+        public int? Children_Count { get; set; }
 
         [JsonPropertyName("collection")]
         public string Collection { get; set; }
@@ -29,7 +29,7 @@ namespace Uniquery
         public string Collection_Description { get; set; }
 
         [JsonPropertyName("collection_id")]
-        public int Collection_Id { get; set; }
+        public int? Collection_Id { get; set; }
 
         [JsonPropertyName("collection_name")]
         public string Collection_Name { get; set; }
@@ -41,16 +41,16 @@ namespace Uniquery
         public string Collection_Owner_Normalized { get; set; }
 
         [JsonPropertyName("date_of_creation")]
-        public int Date_Of_Creation { get; set; }
+        public int? Date_Of_Creation { get; set; }
 
         [JsonPropertyName("image")]
         public UniqueImage Image { get; set; }
 
         [JsonPropertyName("is_sold")]
-        public bool Is_Sold { get; set; }
+        public bool? Is_Sold { get; set; }
 
         [JsonPropertyName("nested")]
-        public bool Nested { get; set; }
+        public bool? Nested { get; set; }
 
         [JsonPropertyName("owner")]
         public string Owner { get; set; }
@@ -65,7 +65,7 @@ namespace Uniquery
         //public string Properties { get; set; }
 
         [JsonPropertyName("token_id")]
-        public int Token_Id { get; set; }
+        public int? Token_Id { get; set; }
 
         [JsonPropertyName("token_name")]
         public string Token_Name { get; set; }
@@ -89,7 +89,7 @@ namespace Uniquery
         public string Total_Pieces { get; set; }
 
         [JsonPropertyName("transfers_count")]
-        public int Transfers_Count { get; set; }
+        public int? Transfers_Count { get; set; }
 
         public override string ToString()
         {

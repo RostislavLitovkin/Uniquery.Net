@@ -6,19 +6,19 @@ namespace Uniquery
     public class UniqueCollection
     {
         [JsonPropertyName("actions_count")]
-        public int Actions_Count { get; set; }
+        public int? Actions_Count { get; set; }
 
         //[JsonPropertyName("attributes_schema")]
         //public string Attributes_Schema { get; set; } // assuming JSON maps to string here
 
         [JsonPropertyName("burned")]
-        public bool Burned { get; set; }
+        public bool? Burned { get; set; }
 
         [JsonPropertyName("collection_cover")]
         public string Collection_Cover { get; set; }
 
         [JsonPropertyName("collection_id")]
-        public int Collection_Id { get; set; }
+        public int? Collection_Id { get; set; }
 
         //[JsonPropertyName("const_chain_schema")]
         //public string Const_Chain_Schema { get; set; } // assuming JSON maps to string here
@@ -30,7 +30,7 @@ namespace Uniquery
         public string Description { get; set; }
 
         [JsonPropertyName("holders_count")]
-        public int Holders_Count { get; set; }
+        public int? Holders_Count { get; set; }
 
         [JsonPropertyName("limits_account_ownership")]
         public int? Limits_Account_Ownership { get; set; }
@@ -42,7 +42,7 @@ namespace Uniquery
         public float? Limits_Sponsore_Data_Size { get; set; }
 
         [JsonPropertyName("mint_mode")]
-        public bool Mint_Mode { get; set; }
+        public bool? Mint_Mode { get; set; }
 
         [JsonPropertyName("mode")]
         public string Mode { get; set; }
@@ -51,7 +51,7 @@ namespace Uniquery
         public string Name { get; set; }
 
         [JsonPropertyName("nesting_enabled")]
-        public bool Nesting_Enabled { get; set; }
+        public bool? Nesting_Enabled { get; set; }
 
         [JsonPropertyName("offchain_schema")]
         public string Offchain_Schema { get; set; }
@@ -60,10 +60,10 @@ namespace Uniquery
         public string Owner { get; set; }
 
         [JsonPropertyName("owner_can_destroy")]
-        public bool Owner_Can_Destroy { get; set; }
+        public bool? Owner_Can_Destroy { get; set; }
 
         [JsonPropertyName("owner_can_transfer")]
-        public bool Owner_Can_Transfer { get; set; }
+        public bool? Owner_Can_Transfer { get; set; }
 
         [JsonPropertyName("owner_normalized")]
         public string Owner_Normalized { get; set; }
@@ -81,7 +81,7 @@ namespace Uniquery
         public string Sponsorship { get; set; }
 
         [JsonPropertyName("token_limit")]
-        public float Token_Limit { get; set; }
+        public float? Token_Limit { get; set; }
 
         [JsonPropertyName("token_prefix")]
         public string Token_Prefix { get; set; }
@@ -90,10 +90,10 @@ namespace Uniquery
         //public string Token_Property_Permissions { get; set; } // assuming JSON maps to string here
 
         [JsonPropertyName("tokens_count")]
-        public int Tokens_Count { get; set; }
+        public int? Tokens_Count { get; set; }
 
         [JsonPropertyName("transfers_count")]
-        public int Transfers_Count { get; set; }
+        public int? Transfers_Count { get; set; }
 
         //[JsonPropertyName("variable_on_chain_schema")]
         //public string Variable_On_Chain_Schema { get; set; } // assuming JSON maps to string here

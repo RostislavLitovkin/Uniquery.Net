@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Xml.Linq;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 
 namespace Uniquery
 {
-	public class Opal
-	{
+    public class Opal
+    {
         // GraphQL client that is always available.
         // This is an optimisation - reinitialization of the client is bad practice.
         public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
@@ -94,13 +95,13 @@ namespace Uniquery
         {
             var filter = new { owner = new { _eq = ownerAddress } };
 
-            var collections = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await UniqueNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
                 );
 
-            return collections;
+            return nfts;
         }
 
         public static async Task<List<UniqueNft>> NftListByCollectionId(
@@ -110,13 +111,13 @@ namespace Uniquery
         {
             var filter = new { collection_id = new { _eq = collectionId } };
 
-            var collections = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await UniqueNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
                 );
 
-            return collections;
+            return nfts;
         }
 
         public static async Task<List<UniqueNft>> NftListByIssuer(
@@ -126,13 +127,13 @@ namespace Uniquery
         {
             var filter = new { collection_owner = new { _eq = issuerAddress } };
 
-            var collections = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await UniqueNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
                 );
 
-            return collections;
+            return nfts;
         }
 
         public static async Task<List<UniqueNft>> NftListByName(
@@ -142,13 +143,29 @@ namespace Uniquery
         {
             var filter = new { collection_name = new { _eq = name } };
 
-            var collections = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await UniqueNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
                 );
 
-            return collections;
+            return nfts;
+        }
+
+        public static async Task<List<UniqueNft>> NftList(
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new {  };
+
+            Console.WriteLine("..");
+            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return nfts;
         }
 
         // Does not exist
@@ -163,6 +180,72 @@ namespace Uniquery
             int limit = 25,
             int offset = 0)
         {*/
+
+        public static async Task<List<UniqueEvent>> EventList(
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new {  };
+
+            var events = await UniqueEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return events;
+        }
+
+
+        // Does not exist
+        /*public static async Task<List<UniqueEvent>> EventListByAddress(
+            int limit = 25,
+            int offset = 0)*/
+
+        /*public static async Task<List<UniqueEvent>> EventListByInteraction(
+            int limit = 25,
+            int offset = 0)*/
+
+        // The filter in GraphQL is broken... (already issued in telegram)
+        /*public static async Task<List<UniqueEvent>> EventListByCollectionId(
+            int collectionId,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { collection_id = new { _eq = collectionId } };
+
+            var events = await UniqueEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return events;
+        }*/
+
+        // The filter in GraphQL is broken... (already issued in telegram)
+        /*public static async Task<List<UniqueEvent>> EventListByTokenId(
+            int collectionId,
+            int tokenId,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new
+            {
+                _and = new object[2] {
+                    new { collection_id = new { _eq = collectionId } },
+                    new { token_id = new { _eq = collectionId } }
+                }
+            };
+
+            var events = await UniqueEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return events;
+        }*/
     }
 }
 

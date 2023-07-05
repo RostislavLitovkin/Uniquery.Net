@@ -150,4 +150,21 @@ foreach (var nft in nfts)
     Console.WriteLine(nft);
 }
 
+nfts = await Uniquery.Opal.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+var events = await Uniquery.Opal.EventListByCollectionId(1850);
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+
 Console.ReadKey();
