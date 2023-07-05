@@ -86,6 +86,83 @@ namespace Uniquery
 
             return collections;
         }
+
+        public static async Task<List<UniqueNft>> NftListByOwner(
+            string ownerAddress,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { owner = new { _eq = ownerAddress } };
+
+            var collections = await UniqueNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return collections;
+        }
+
+        public static async Task<List<UniqueNft>> NftListByCollectionId(
+            int collectionId,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { collection_id = new { _eq = collectionId } };
+
+            var collections = await UniqueNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return collections;
+        }
+
+        public static async Task<List<UniqueNft>> NftListByIssuer(
+            string issuerAddress,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { collection_owner = new { _eq = issuerAddress } };
+
+            var collections = await UniqueNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return collections;
+        }
+
+        public static async Task<List<UniqueNft>> NftListByName(
+            string name,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { collection_name = new { _eq = name } };
+
+            var collections = await UniqueNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            return collections;
+        }
+
+        // Does not exist
+        /*public static async Task<List<UniqueNft>> NftListByMetadataId(
+            string issuerAddress,
+            int limit = 25,
+            int offset = 0)
+        {*/
+
+        /*public static async Task<List<UniqueNft>> NftListByCollectionMetadataId(
+            string issuerAddress,
+            int limit = 25,
+            int offset = 0)
+        {*/
     }
 }
 

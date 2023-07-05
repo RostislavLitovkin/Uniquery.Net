@@ -121,4 +121,33 @@ foreach (var collection in collections)
     Console.WriteLine(collection);
 }
 
+var nfts = await Uniquery.Opal.NftListByName("Ancient Opals");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByCollectionId(1850);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Found by collection Id");
+    Console.WriteLine(nft);
+}
+
 Console.ReadKey();
