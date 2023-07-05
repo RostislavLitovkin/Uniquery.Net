@@ -1,6 +1,6 @@
 ﻿// This is a sample of how to use Uniquery
 
-
+/*
 var collections = await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
 
 foreach (var collection in collections)
@@ -103,5 +103,95 @@ foreach (var e in events)
 {
     //Console.WriteLine(e);
 }
+*/
+
+Console.WriteLine(await Uniquery.Opal.CollectionById(1850));
+
+var collections = await Uniquery.Opal.CollectionListByOwner("5EJTrNheSa3iVUtuAPXg823zkHgwUAM5UQ5rhNgwpaLxrdpu");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Opal.CollectionListByName("Opal");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+var nfts = await Uniquery.Opal.NftListByName("Ancient Opals");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByCollectionId(1850);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Found by collection Id");
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+var events = await Uniquery.Quartz.EventList();
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Unique.EventList();
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+nfts = await Uniquery.Quartz.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Unique.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+Console.WriteLine(await Uniquery.Quartz.CollectionById(10));
+
+Console.WriteLine(await Uniquery.Unique.CollectionById(10));
 
 Console.ReadKey();

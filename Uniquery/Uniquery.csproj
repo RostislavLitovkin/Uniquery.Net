@@ -14,9 +14,11 @@
   <ItemGroup>
     <None Remove="Rmrk\" />
     <None Remove="RmrkV2\" />
+    <None Remove="Unique\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rmrk\" />
     <Folder Include="RmrkV2\" />
+    <Folder Include="Unique\" />
   </ItemGroup>
 </Project>
