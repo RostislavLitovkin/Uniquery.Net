@@ -109,12 +109,12 @@ namespace Uniquery
         /// </example>
         /// </summary>
         public static async Task<List<RmrkCollection>> CollectionListByOwner(
-            string owner,
+            string ownerAddress,
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { currentOwner_eq = owner };
+            var filter = new { currentOwner_eq = ownerAddress };
 
             var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
                 filter,

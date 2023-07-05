@@ -1,6 +1,6 @@
 ﻿// This is a sample of how to use Uniquery
 
-
+/*
 var collections = await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
 
 foreach (var collection in collections)
@@ -102,6 +102,23 @@ events = await Uniquery.Rmrk.EventListByNftId("18641451-C4F63647002B182C0E-WOLF-
 foreach (var e in events)
 {
     //Console.WriteLine(e);
+}
+*/
+
+Console.WriteLine(await Uniquery.Opal.CollectionById(1850));
+
+var collections = await Uniquery.Opal.CollectionListByOwner("5EJTrNheSa3iVUtuAPXg823zkHgwUAM5UQ5rhNgwpaLxrdpu");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Opal.CollectionListByName("Opal");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
 }
 
 Console.ReadKey();
