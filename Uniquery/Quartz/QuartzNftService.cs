@@ -4,8 +4,8 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-    public class UniqueNftService
-    {
+	public class QuartzNftService
+	{
         private class ResponseType
         {
             [JsonPropertyName("tokens")]
@@ -71,7 +71,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Unique.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Quartz.client.SendQueryAsync<ResponseType>(request);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

@@ -16,11 +16,15 @@
     <None Remove="RmrkV2\" />
     <None Remove="Unique\" />
     <None Remove="Basilisk\" />
+    <None Remove="Quartz\" />
+    <None Remove="Opal\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rmrk\" />
     <Folder Include="RmrkV2\" />
     <Folder Include="Unique\" />
     <Folder Include="Basilisk\" />
+    <Folder Include="Quartz\" />
+    <Folder Include="Opal\" />
   </ItemGroup>
 </Project>
