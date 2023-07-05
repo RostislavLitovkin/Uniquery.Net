@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-	public class UniqueEventService
+	public class OpalEventService
 	{
         private class ResponseType
         {
@@ -48,7 +48,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Unique.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Opal.client.SendQueryAsync<ResponseType>(request);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {
