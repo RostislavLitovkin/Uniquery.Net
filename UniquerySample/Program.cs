@@ -158,7 +158,7 @@ foreach (var nft in nfts)
     Console.WriteLine(nft);
 }
 
-var events = await Uniquery.Opal.EventListByCollectionId(1850);
+var events = await Uniquery.Quartz.EventList();
 
 foreach (var e in events)
 {
@@ -166,5 +166,32 @@ foreach (var e in events)
     Console.WriteLine(e);
 }
 
+events = await Uniquery.Unique.EventList();
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+nfts = await Uniquery.Quartz.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Unique.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("nft list");
+    Console.WriteLine(nft);
+}
+
+Console.WriteLine(await Uniquery.Quartz.CollectionById(10));
+
+Console.WriteLine(await Uniquery.Unique.CollectionById(10));
 
 Console.ReadKey();
