@@ -129,5 +129,33 @@ namespace Uniquery
 
             return collections;
         }
+
+
+        public static async Task<RmrkV2Nft> NftById(
+            string id,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { id_eq = id };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                eventsLimit,
+                emotesLimit
+                );
+
+            if (!nfts.Any())
+            {
+                throw new Exception("No nft found.");
+            }
+
+            return nfts[0];
+        }
     }
 }
