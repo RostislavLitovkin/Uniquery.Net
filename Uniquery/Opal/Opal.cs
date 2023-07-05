@@ -33,7 +33,7 @@ namespace Uniquery
         {
             var filter = new { collection_id = new { _eq = id } };
 
-            var collections = await UniqueCollectionService.GetCollectionEntitiesAsync(
+            var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -63,7 +63,7 @@ namespace Uniquery
         {
             var filter = new { name = new { _eq = name } };
 
-            var collections = await UniqueCollectionService.GetCollectionEntitiesAsync(
+            var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -79,7 +79,7 @@ namespace Uniquery
         {
             var filter = new { owner = new { _eq = ownerAddress } };
 
-            var collections = await UniqueCollectionService.GetCollectionEntitiesAsync(
+            var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -95,7 +95,7 @@ namespace Uniquery
         {
             var filter = new { owner = new { _eq = ownerAddress } };
 
-            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -111,7 +111,7 @@ namespace Uniquery
         {
             var filter = new { collection_id = new { _eq = collectionId } };
 
-            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -127,7 +127,7 @@ namespace Uniquery
         {
             var filter = new { collection_owner = new { _eq = issuerAddress } };
 
-            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -143,7 +143,7 @@ namespace Uniquery
         {
             var filter = new { collection_name = new { _eq = name } };
 
-            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -159,7 +159,7 @@ namespace Uniquery
             var filter = new {  };
 
             Console.WriteLine("..");
-            var nfts = await UniqueNftService.GetNftEntitiesAsync(
+            var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset
@@ -187,7 +187,7 @@ namespace Uniquery
         {
             var filter = new {  };
 
-            var events = await UniqueEventService.GetEventEntitiesAsync(
+            var events = await OpalEventService.GetEventEntitiesAsync(
                 filter,
                 limit,
                 offset
