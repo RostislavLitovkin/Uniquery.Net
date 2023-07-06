@@ -33,7 +33,7 @@ namespace Uniquery
         public string Meta { get; set; }
 
         [JsonPropertyName("nft")]
-        public GlmrNfts Nft { get; set; }
+        public GlmrNft Nft { get; set; }
 
         public override string ToString()
         {
