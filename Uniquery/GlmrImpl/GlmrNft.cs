@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace Uniquery.GlmrImpl
 {
-    public class GlmrNfts
+    public class GlmrNft
     {
         [JsonPropertyName("id")]
         public string? Id { get; set; }

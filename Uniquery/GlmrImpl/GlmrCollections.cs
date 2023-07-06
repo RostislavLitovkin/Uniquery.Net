@@ -21,7 +21,7 @@ namespace Uniquery
         public String? Metadata { get; set; }
         public RmrkMetadata? Meta { get; set; }
         public String? Name { get; set; }
-        public GlmrNfts Nfts { get; set; }
+        public List<GlmrNft> Nfts { get; set; }
         public String? Symbol { get; set; }
         public String Type { get; set; }
         public DateTime UpdatedAt { get; set; }
