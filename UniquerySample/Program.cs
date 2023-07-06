@@ -221,5 +221,49 @@ foreach (var collection in collections)
 }
 
 
+Console.WriteLine(await Uniquery.Basilisk.NftById("4155379122-4"));
+
+var nfts = await Uniquery.Basilisk.NftListByCollectionId("4155379122");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByName("Snek", forSale: true);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftList(forSale: true);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByMetadataId("ipfs://ipfs/bafkreiaig3izwq2de7hiikzcfbfg4ax3xpofsxmkgb6p63xtan2k56x7vi");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByCollectionMetadataId("ipfs://ipfs/bafkreiaig3izwq2de7hiikzcfbfg4ax3xpofsxmkgb6p63xtan2k56x7vi");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByOwner("bXkmHMVWgX5k8JkKGqrAw1RCso6abY2U9Q5E12vvYZQxeNf7S");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
 
 Console.ReadKey();

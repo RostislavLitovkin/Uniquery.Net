@@ -4,35 +4,35 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-	public class RmrkNftService
+	public class BasiliskNftService
 	{
         private class ResponseType
         {
             [JsonPropertyName("nftEntities")]
-            public List<RmrkNft> NftEntities { get; set; }
+            public List<BasiliskNft> NftEntities { get; set; }
         }
 
-        private class RmrkNftGraphQLVariables: GraphQLVariables
+        private class BasiliskNftGraphQLVariables : GraphQLVariables
         {
             public int eventsLimit { get; set; }
-            public int emotesLimit { get; set; }
+            public int offersLimit { get; set; }
         }
 
-        public static async Task<List<RmrkNft>> GetNftEntitiesAsync(
+        public static async Task<List<BasiliskNft>> GetNftEntitiesAsync(
             object filter,
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
             int eventsLimit = 10,
-            int emotesLimit = 10
+            int offersLimit = 10
         )
         {
 
             GraphQLRequest request = new GraphQLRequest
             {
                 Query = @"
-                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput!, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $emotesLimit: Int!) {
+                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput!, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $offersLimit: Int!) {
                       nftEntities(limit: $limit, offset: $offset, where: " +
                         (forSale ? @"{ OR: [ { price_not_eq: ""0"" }, $where] }" : "$where")
                       + @", orderBy: $orderBy) {
@@ -40,31 +40,29 @@ namespace Uniquery
                         burned
                         createdAt
                         currentOwner
-                        emoteCount
-                        hash
                         id
+                        hash
+                        image
                         issuer
-                        instance
+                        media
+                        metadata
                         name
                         price
+                        recipient
+                        royalty
                         sn
-                        transferable
                         updatedAt
-                        meta {
-                          animationUrl
-                          description
+                        offers(limit: $offersLimit) {
+                          blockNumber
+                          caller
+                          createdAt
+                          expiration
                           id
-                          image
-                          name
-                          type
-                          attributes {
-                            display
-                            trait
-                            value
-                          }
+                          price
+                          status
+                          updatedAt
                         }
-                        metadata
-                        events(limit: $eventsLimit, orderBy: timestamp_DESC) {
+                        events(limit: $eventsLimit) {
                           blockNumber
                           caller
                           currentOwner
@@ -73,41 +71,55 @@ namespace Uniquery
                           meta
                           timestamp
                         }
-                        emotes(limit: $emotesLimit) {
-                          caller
+                        meta {
+                          animationUrl
+                          attributes {
+                            display
+                            trait
+                            value
+                          }
+                          description
                           id
-                          value
+                          image
+                          name
+                          type
                         }
                         collection {
+                            id
                             blockNumber
+                            burned
                             createdAt
                             currentOwner
-                            id
+                            distribution
+                            floor
+                            highestSale
+                            image
                             issuer
-                            max
+                            media
                             metadata
                             name
                             nftCount
-                            symbol
                             supply
+                            ownerCount
+                            type
+                            volume
                             updatedAt
-                            version
                         }
                       }
                     }",
                 OperationName = "MyQuery",
-                Variables = new RmrkNftGraphQLVariables
+                Variables = new BasiliskNftGraphQLVariables
                 {
                     where = filter,
                     offset = offset,
                     limit = limit,
                     orderBy = orderBy,
                     eventsLimit = eventsLimit,
-                    emotesLimit = emotesLimit,
+                    offersLimit = offersLimit,
                 },
             };
-            
-            var graphQLResponse = await Rmrk.client.SendQueryAsync<ResponseType>(request);
+
+            var graphQLResponse = await Basilisk.client.SendQueryAsync<ResponseType>(request);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

@@ -65,6 +65,13 @@ namespace Uniquery
 
         [JsonPropertyName("updatedAt")]
         public DateTime UpdatedAt { get; set; }
+
+        public override string ToString()
+        {
+            return "Rmrk nft: " + Name + " owned by " + CurrentOwner + " (id: " + Id + ")"
+                + "\n" + (Meta != null ? "Description : " + Meta.Description : "Metadata: " + Metadata) + "\n" +
+                "Currently selling for: " + Price + "\n";
+        }
     }
 
 }
