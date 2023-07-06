@@ -28,9 +28,7 @@ namespace Uniquery
         public List<BasiliskEvent> Events { get; set; }
 
         [JsonPropertyName("offers")]
-        public List<BasiliskEvent> Events { get; set; }
-        // Events and offers are list of Event and Offer respectively. Definitions for Event and Offer are not provided here.
-        // Assuming they are already defined elsewhere in your code.
+        public List<BasiliskOffer> Offers { get; set; }
 
         [JsonPropertyName("hash")]
         public string Hash { get; set; }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
+
 namespace Uniquery
 {
 	public enum BasiliskInteraction

@@ -23,7 +23,7 @@ namespace Uniquery
         public string CurrentOwner { get; set; }
 
         [JsonPropertyName("interaction")]
-        public Interaction Interaction { get; set; }
+        public BasiliskInteraction Interaction { get; set; }
 
         [JsonPropertyName("meta")]
         public string Meta { get; set; }

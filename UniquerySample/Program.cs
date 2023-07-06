@@ -104,7 +104,7 @@ foreach (var e in events)
     //Console.WriteLine(e);
 }
 */
-
+/*
 Console.WriteLine(await Uniquery.Quartz.CollectionById(10));
 
 Console.WriteLine(await Uniquery.Unique.CollectionById(10));
@@ -195,5 +195,31 @@ foreach (var nft in nfts)
 }
 
 Console.WriteLine("Done");
+*/
+
+Console.WriteLine(await Uniquery.Basilisk.CollectionById("1"));
+
+var collections = await Uniquery.Basilisk.CollectionListByIssuer("bXj4uMHTrBtVfmVMDpQ1AyUUNbnvLaRPcBDVTeLffL2h2U3KE");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Basilisk.CollectionListByName("lin");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Basilisk.CollectionListByOwner("bXj4uMHTrBtVfmVMDpQ1AyUUNbnvLaRPcBDVTeLffL2h2U3KE");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+
 
 Console.ReadKey();

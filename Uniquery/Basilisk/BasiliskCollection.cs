@@ -52,7 +52,7 @@ namespace Uniquery
         public string Name { get; set; }
 
         [JsonPropertyName("nfts")]
-        public List<NFTEntity> Nfts { get; set; } = new List<NFTEntity>();
+        public List<BasiliskNft> Nfts { get; set; } = new List<BasiliskNft>();
 
         [JsonPropertyName("ownerCount")]
         public int OwnerCount { get; set; }
@@ -65,6 +65,12 @@ namespace Uniquery
 
         [JsonPropertyName("type")]
         public BasiliskCollectionType Type { get; set; }
+
+        public override string ToString()
+        {
+            return "Basilisk collection: " + Name + " by " + Issuer + " (id: " + Id + ")"
+                + "\n" + (Meta != null ? "Description : " + Meta.Description : "Metadata: " + Metadata) + "\n";
+        }
     }
 }
 
