@@ -1,6 +1,6 @@
 ﻿// This is a sample of how to use Uniquery
 
-
+/*
 var collections = await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
 
 foreach (var collection in collections)
@@ -102,6 +102,194 @@ events = await Uniquery.Rmrk.EventListByNftId("18641451-C4F63647002B182C0E-WOLF-
 foreach (var e in events)
 {
     //Console.WriteLine(e);
+}
+*/
+/*
+Console.WriteLine(await Uniquery.Quartz.CollectionById(10));
+
+Console.WriteLine(await Uniquery.Unique.CollectionById(10));
+
+Console.WriteLine(await Uniquery.Opal.CollectionById(1850));
+
+var collections = await Uniquery.Opal.CollectionListByOwner("5EJTrNheSa3iVUtuAPXg823zkHgwUAM5UQ5rhNgwpaLxrdpu");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Opal.CollectionListByName("Opal");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+var nfts = await Uniquery.Opal.NftListByName("Ancient Opals");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Opal.NftListByCollectionId(1850);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Found by collection Id");
+    Console.WriteLine(nft);
+}
+
+var events = await Uniquery.Quartz.EventList();
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Unique.EventList();
+
+foreach (var e in events)
+{
+    Console.WriteLine("event list");
+    Console.WriteLine(e);
+}
+
+nfts = await Uniquery.Opal.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Opal nft list");
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Quartz.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Quartz nft list");
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Unique.NftList();
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine("Unique nft list");
+    Console.WriteLine(nft);
+}
+
+Console.WriteLine("Done");
+*/
+
+Console.WriteLine(await Uniquery.Basilisk.CollectionById("1"));
+
+var collections = await Uniquery.Basilisk.CollectionListByIssuer("bXj4uMHTrBtVfmVMDpQ1AyUUNbnvLaRPcBDVTeLffL2h2U3KE");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Basilisk.CollectionListByName("lin");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+collections = await Uniquery.Basilisk.CollectionListByOwner("bXj4uMHTrBtVfmVMDpQ1AyUUNbnvLaRPcBDVTeLffL2h2U3KE");
+
+foreach (var collection in collections)
+{
+    Console.WriteLine(collection);
+}
+
+
+Console.WriteLine(await Uniquery.Basilisk.NftById("4155379122-4"));
+
+var nfts = await Uniquery.Basilisk.NftListByCollectionId("4155379122");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByName("Snek", forSale: true);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftList(forSale: true);
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByMetadataId("ipfs://ipfs/bafkreiaig3izwq2de7hiikzcfbfg4ax3xpofsxmkgb6p63xtan2k56x7vi");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByCollectionMetadataId("ipfs://ipfs/bafkreiaig3izwq2de7hiikzcfbfg4ax3xpofsxmkgb6p63xtan2k56x7vi");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+nfts = await Uniquery.Basilisk.NftListByOwner("bXkmHMVWgX5k8JkKGqrAw1RCso6abY2U9Q5E12vvYZQxeNf7S");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
+
+
+var events = await Uniquery.Basilisk.EventList();
+
+events = await Uniquery.Basilisk.EventListByAddress("bXkmHMVWgX5k8JkKGqrAw1RCso6abY2U9Q5E12vvYZQxeNf7S");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByInteraction(Uniquery.BasiliskInteraction.BUY);
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByCollectionId("4155379122");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByNftId("4155379122-4");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
 }
 
 Console.ReadKey();
