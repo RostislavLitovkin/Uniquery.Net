@@ -4,25 +4,17 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-    public class BasiliskNft
+    public class BasiliskNft : Nft
     {
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
         [JsonPropertyName("blockNumber")]
         public BigInteger? BlockNumber { get; set; }
 
         [JsonPropertyName("burned")]
         public bool Burned { get; set; }
 
+        private BasiliskCollection collection;
         [JsonPropertyName("collection")]
-        public BasiliskCollection Collection { get; set; }
-
-        [JsonPropertyName("createdAt")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonPropertyName("currentOwner")]
-        public string CurrentOwner { get; set; }
+        public BasiliskCollection Collection { get => collection; set { collection = value; base.Collection = value; } }
 
         [JsonPropertyName("events")]
         public List<BasiliskEvent> Events { get; set; }
@@ -33,23 +25,14 @@ namespace Uniquery
         [JsonPropertyName("hash")]
         public string Hash { get; set; }
 
-        [JsonPropertyName("image")]
-        public string Image { get; set; }
-
         [JsonPropertyName("issuer")]
         public string Issuer { get; set; }
-
-        [JsonPropertyName("meta")]
-        public RmrkMetadata Meta { get; set; }
 
         [JsonPropertyName("media")]
         public string Media { get; set; }
 
         [JsonPropertyName("metadata")]
         public string Metadata { get; set; }
-
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
 
         [JsonPropertyName("price")]
         public BigInteger? Price { get; set; }
@@ -65,14 +48,6 @@ namespace Uniquery
 
         [JsonPropertyName("updatedAt")]
         public DateTime UpdatedAt { get; set; }
-
-        public override string ToString()
-        {
-            return "Basilisk nft: " + Name + " owned by " + CurrentOwner + " (id: " + Id + ")"
-                + "\n" + (Meta != null ? "Description : " + Meta.Description : "Metadata: " + Metadata) + "\n" +
-                "Currently selling for: " + Price + "\n";
-        }
     }
-
 }
 

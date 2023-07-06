@@ -82,6 +82,12 @@ namespace Uniquery
                     throw new Exception(error.Message);
                 }
             }
+
+            foreach (var collection in graphQLResponse.Data.Collections.Data)
+            {
+                //collection.NetworkFormat = "quartz";
+            }
+
             return graphQLResponse.Data.Collections.Data;
         }
     }
