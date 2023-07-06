@@ -358,6 +358,135 @@ namespace Uniquery
 
             return nfts;
         }
+
+        /// <summary>
+        /// returns all events
+        /// <example>
+        /// <code>
+        /// await Uniquery.Basilisk.EventList();
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<BasiliskEvent>> EventList(
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { };
+
+            var events = await BasiliskEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return events;
+        }
+
+        /// <summary>
+        ///  returns events by address
+        /// <example>
+        /// <code>
+        /// await Uniquery.Basilisk.EventListByAddress("bXkmHMVWgX5k8JkKGqrAw1RCso6abY2U9Q5E12vvYZQxeNf7S");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<BasiliskEvent>> EventListByAddress(
+            string address,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { caller_eq = address };
+
+            var events = await BasiliskEventService.GetEventEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy
+                );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by collection id
+        /// <example>
+        /// <code>
+        /// await Uniquery.Basilisk.EventListByCollectionId("4155379122");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<BasiliskEvent>> EventListByCollectionId(
+            string collectionId,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { nft = new { collection = new { id_eq = collectionId } } };
+
+            var events = await BasiliskEventService.GetEventEntitiesAsync(
+                    filter,
+                    limit,
+                    offset,
+                    orderBy
+                    );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by interaction
+        /// <example>
+        /// <code>
+        /// await Uniquery.Basilisk.EventListByInteraction(Uniquery.BasiliskInteraction.BUY);
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<BasiliskEvent>> EventListByInteraction(
+            BasiliskInteraction interaction,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { interaction_eq = interaction };
+
+            var events = await BasiliskEventService.GetEventEntitiesAsync(
+                    filter,
+                    limit,
+                    offset,
+                    orderBy
+                    );
+
+            return events;
+        }
+
+        /// <summary>
+        /// returns events by nft id
+        /// <example>
+        /// <code>
+        /// await Uniquery.Basilisk.EventListByNftId("4155379122-4");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<BasiliskEvent>> EventListByNftId(
+            string id,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "timestamp_DESC")
+        {
+            var filter = new { nft = new { id_eq = id } };
+
+            var events = await BasiliskEventService.GetEventEntitiesAsync(
+                    filter,
+                    limit,
+                    offset,
+                    orderBy
+                    );
+
+            return events;
+        }
     }
 }
 

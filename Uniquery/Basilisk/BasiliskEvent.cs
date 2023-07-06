@@ -30,6 +30,11 @@ namespace Uniquery
 
         [JsonPropertyName("nft")]
         public BasiliskNft Nft { get; set; }
+
+        public override string ToString()
+        {
+            return "Basilisk event: " + Interaction + " - " + Id + "\n";
+        }
     }
 
 }

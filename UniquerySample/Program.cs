@@ -266,4 +266,30 @@ foreach (var nft in nfts)
 }
 
 
+var events = await Uniquery.Basilisk.EventList();
+
+events = await Uniquery.Basilisk.EventListByAddress("bXkmHMVWgX5k8JkKGqrAw1RCso6abY2U9Q5E12vvYZQxeNf7S");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByInteraction(Uniquery.BasiliskInteraction.BUY);
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByCollectionId("4155379122");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
+events = await Uniquery.Basilisk.EventListByNftId("4155379122-4");
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+}
+
 Console.ReadKey();
