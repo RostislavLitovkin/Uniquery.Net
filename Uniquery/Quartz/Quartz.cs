@@ -87,6 +87,27 @@ namespace Uniquery
             return collections;
         }
 
+        public static async Task<UniqueNft> NftById(
+            int id,
+            int limit = 25,
+            int offset = 0)
+        {
+            var filter = new { token_id = new { _eq = id } };
+
+            var nfts = await QuartzNftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset
+                );
+
+            if (!nfts.Any())
+            {
+                throw new Exception("No nft found.");
+            }
+
+            return nfts[0];
+        }
+
         public static async Task<List<UniqueNft>> NftListByOwner(
             string ownerAddress,
             int limit = 25,
@@ -157,7 +178,6 @@ namespace Uniquery
         {
             var filter = new { };
 
-            Console.WriteLine("..");
             var nfts = await QuartzNftService.GetNftEntitiesAsync(
                 filter,
                 limit,

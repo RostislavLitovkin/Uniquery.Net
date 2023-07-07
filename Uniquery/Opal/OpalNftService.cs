@@ -81,6 +81,11 @@ namespace Uniquery
                 }
             }
 
+            foreach (var nft in graphQLResponse.Data.Tokens.Data)
+            {
+                nft.NetworkFormat = "opal";
+            }
+
             return graphQLResponse.Data.Tokens.Data;
         }
     }

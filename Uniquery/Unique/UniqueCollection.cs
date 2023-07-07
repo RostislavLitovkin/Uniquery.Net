@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-    public class UniqueCollection
+    public class UniqueCollection : Collection
     {
         [JsonPropertyName("actions_count")]
         public int? Actions_Count { get; set; }
@@ -15,19 +15,24 @@ namespace Uniquery
         public bool? Burned { get; set; }
 
         [JsonPropertyName("collection_cover")]
-        public string Collection_Cover { get; set; }
+        public string Collection_Cover { get => Meta.Image; set { Meta.Image = value; } }
 
         [JsonPropertyName("collection_id")]
-        public int? Collection_Id { get; set; }
+        public int? Collection_Id { get => int.Parse(Id); set { if (value != null) Id = value.ToString(); } }
 
         //[JsonPropertyName("const_chain_schema")]
         //public string Const_Chain_Schema { get; set; } // assuming JSON maps to string here
 
+        private List<UniqueNft> tokens = new List<UniqueNft>();
+
+        [JsonPropertyName("tokens")]
+        public List<UniqueNft> Tokens { get => tokens; set { if (value != null) { tokens = value; Nfts = new List<Nft>(value); } } }
+
         [JsonPropertyName("date_of_creation")]
-        public int? Date_Of_Creation { get; set; }
+        public int? Date_Of_Creation { get => (int)CreatedAt.ToUniversalTime().Ticks; set { if (value != null) CreatedAt = new DateTime((long)value, DateTimeKind.Utc); } }
 
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string Description { get => Meta.Description; set { Meta.Description = value; } }
 
         [JsonPropertyName("holders_count")]
         public int? Holders_Count { get; set; }
@@ -48,7 +53,7 @@ namespace Uniquery
         public string Mode { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get => Meta.Name; set { Meta.Name = value; base.Name = value; } }
 
         [JsonPropertyName("nesting_enabled")]
         public bool? Nesting_Enabled { get; set; }
@@ -57,7 +62,7 @@ namespace Uniquery
         public string Offchain_Schema { get; set; }
 
         [JsonPropertyName("owner")]
-        public string Owner { get; set; }
+        public string Owner { get => CurrentOwner; set { CurrentOwner = value; } }
 
         [JsonPropertyName("owner_can_destroy")]
         public bool? Owner_Can_Destroy { get; set; }
@@ -90,19 +95,13 @@ namespace Uniquery
         //public string Token_Property_Permissions { get; set; } // assuming JSON maps to string here
 
         [JsonPropertyName("tokens_count")]
-        public int? Tokens_Count { get; set; }
+        public int? Tokens_Count { get => NftCount; set { NftCount = value; } }
 
         [JsonPropertyName("transfers_count")]
         public int? Transfers_Count { get; set; }
 
         //[JsonPropertyName("variable_on_chain_schema")]
         //public string Variable_On_Chain_Schema { get; set; } // assuming JSON maps to string here
-
-        public override string ToString()
-        {
-            return "Unique collection: " + Name + " by " + Owner + " (id: " + Collection_Id + ")"
-                + Description + "\n";
-        }
     }
 
 }

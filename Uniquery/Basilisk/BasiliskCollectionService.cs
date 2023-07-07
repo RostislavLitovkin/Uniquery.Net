@@ -86,6 +86,12 @@ namespace Uniquery
                     throw new Exception(error.Message);
                 }
             }
+
+            foreach (var collection in graphQLResponse.Data.CollectionEntities)
+            {
+                collection.NetworkFormat = "basilisk";
+            }
+
             return graphQLResponse.Data.CollectionEntities;
         }
     }
