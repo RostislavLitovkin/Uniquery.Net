@@ -73,6 +73,10 @@ var nfts = await Uniquery.Rmrk.NftListByCollectionId(id);
 - **offset** = offset of index of the returned items, **Default = 0**
 - **orderBy** = ordering of the returned items, **Default = <time_desc>**
 
+In-code documentation with wispering and examples is also included:
+<img width="1003" alt="Screenshot 2023-07-07 at 11 49 19" src="https://github.com/RostislavLitovkin/Uniquery.Net/assets/77352013/d543d139-d508-4e90-a497-34b3e0b18785">
+
+
 # Inspiration
 
 - https://github.com/kodadot/uniquery - This project is a c# implementation of this original javascript package.
