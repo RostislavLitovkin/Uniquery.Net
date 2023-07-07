@@ -11,7 +11,7 @@ namespace Uniquery
         public bool Burned { get; set; }
 
         [JsonPropertyName("collection")]
-        public RmrkV2Collection Collection { get; set; }  // replace with actual class
+        public RmrkV2Collection Collection { get; set; }
 
         [JsonPropertyName("createdAt")]
         public DateTime CreatedAt { get; set; }
@@ -23,10 +23,10 @@ namespace Uniquery
         public int EmoteCount { get; set; }
 
         [JsonPropertyName("emotes")]
-        public List<RmrkV2Emote>? Emotes { get; set; } // replace with actual class
+        public List<RmrkV2Emote>? Emotes { get; set; }
 
         [JsonPropertyName("events")]
-        public List<RmrkV2CollectionEvent>? Events { get; set; } // replace with actual class
+        public List<RmrkV2CollectionEvent>? Events { get; set; }
 
         [JsonPropertyName("hash")]
         public string Hash { get; set; }
@@ -47,7 +47,7 @@ namespace Uniquery
         public string? Media { get; set; }
 
         [JsonPropertyName("meta")]
-        public RmrkV2Metadata Meta { get; set; } // replace with actual class
+        public RmrkV2Metadata Meta { get; set; }
 
         [JsonPropertyName("metadata")]
         public string? Metadata { get; set; }

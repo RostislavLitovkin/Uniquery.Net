@@ -85,6 +85,7 @@ namespace Uniquery
                     throw new Exception(error.Message);
                 }
             }
+
             return graphQLResponse.Data.CollectionEntities;
         }
     }
