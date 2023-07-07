@@ -295,7 +295,52 @@ async Task BasiliskTest()
     }
 }
 
-await UniqueTest();
+async Task UniversalTest()
+{
+    var collections = await Uniquery.Universal.CollectionListById("10");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+    collections = await Uniquery.Universal.CollectionListByOwner("5EJTrNheSa3iVUtuAPXg823zkHgwUAM5UQ5rhNgwpaLxrdpu");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    collections = await Uniquery.Universal.CollectionListByName("Opal");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    var nfts = await Uniquery.Universal.NftListByName("Ancient Opals");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.Universal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+
+    nfts = await Uniquery.Universal.NftList();
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+}
+
+await UniversalTest();
 
 Console.WriteLine("Done");
 Console.ReadKey();
