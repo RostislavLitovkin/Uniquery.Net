@@ -22,6 +22,7 @@ namespace Uniquery
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
+            bool forSale = false,
             int eventsLimit = 10,
             int emotesLimit = 10
         )
@@ -29,8 +30,10 @@ namespace Uniquery
             GraphQLRequest request = new GraphQLRequest
             {
                 Query = @"
-                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $emotesLimit: Int!) {
-                      nftEntities(limit: $limit, offset: $offset, where: $where, orderBy: $orderBy) {
+                    query MyQuery ($limit: Int!, $offset: Int!, $where: NFTEntityWhereInput!, $orderBy: [NFTEntityOrderByInput!]!, $eventsLimit: Int!, $emotesLimit: Int!) {
+                      nftEntities(limit: $limit, offset: $offset, where: " +
+                        (forSale ? @"{ OR: [ { price_not_eq: ""0"" }, $where] }" : "$where")
+                      + @", orderBy: $orderBy) {
                         blockNumber
                         burned
                         createdAt
@@ -40,13 +43,6 @@ namespace Uniquery
                           blockNumber
                           createdAt
                           currentOwner
-                          events(limit: $eventsLimit, orderBy: timestamp_DESC) {
-                            blockNumber
-                            caller
-                            interaction
-                            meta
-                            timestamp
-                          }
                           hash
                           id
                           image
@@ -77,7 +73,7 @@ namespace Uniquery
                         transferable
                         updatedAt
                         version
-                        events {
+                        events(limit: $eventsLimit, orderBy: timestamp_DESC) {
                           blockNumber
                           caller
                           id
@@ -128,6 +124,11 @@ namespace Uniquery
                 {
                     throw new Exception(error.Message);
                 }
+            }
+
+            foreach (var nft in graphQLResponse.Data.NftEntities)
+            {
+                nft.NetworkFormat = "rmrk2";
             }
 
             return graphQLResponse.Data.NftEntities;

@@ -86,6 +86,11 @@ namespace Uniquery
                 }
             }
 
+            foreach (var collection in graphQLResponse.Data.CollectionEntities)
+            {
+                collection.NetworkFormat = "rmrk2";
+            }
+
             return graphQLResponse.Data.CollectionEntities;
         }
     }

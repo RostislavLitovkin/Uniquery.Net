@@ -2,22 +2,13 @@
 
 namespace Uniquery
 {
-    public class RmrkV2Nft
+    public class RmrkV2Nft : Nft
     {
         [JsonPropertyName("blockNumber")]
         public long BlockNumber { get; set; }
 
         [JsonPropertyName("burned")]
         public bool Burned { get; set; }
-
-        [JsonPropertyName("collection")]
-        public RmrkV2Collection Collection { get; set; }
-
-        [JsonPropertyName("createdAt")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonPropertyName("currentOwner")]
-        public string? CurrentOwner { get; set; }
 
         [JsonPropertyName("emoteCount")]
         public int EmoteCount { get; set; }
@@ -31,9 +22,6 @@ namespace Uniquery
         [JsonPropertyName("hash")]
         public string Hash { get; set; }
 
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
         [JsonPropertyName("instance")]
         public string? Instance { get; set; }
 
@@ -46,14 +34,8 @@ namespace Uniquery
         [JsonPropertyName("media")]
         public string? Media { get; set; }
 
-        [JsonPropertyName("meta")]
-        public RmrkV2Metadata Meta { get; set; }
-
         [JsonPropertyName("metadata")]
         public string? Metadata { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
 
         [JsonPropertyName("pending")]
         public bool Pending { get; set; }

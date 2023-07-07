@@ -136,6 +136,7 @@ namespace Uniquery
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
+            bool forSale = false,
             int eventsLimit = 10,
             int emotesLimit = 10)
         {
@@ -146,6 +147,7 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
+                forSale,
                 eventsLimit,
                 emotesLimit
                 );
@@ -156,6 +158,198 @@ namespace Uniquery
             }
 
             return nfts[0];
+        }
+
+
+        /// <summary>
+        /// returns NFTs where collection id is equal to provided id
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftListByCollectionId("A4EC02A6BEF317A726-ACCTT");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftListByCollectionId(
+            string collectionId,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { collection = new { id_eq = collectionId } };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
+        }
+
+        /// <summary>
+        /// returns NFTs by name
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftListByName("shape");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftListByName(
+            string name,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { name_containsInsensitive = name };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
+        }
+
+        /// <summary>
+        /// returns NFTs where metadata match Nft metadata id
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftListByMetadataId("ipfs://ipfs/bafkreib26sbxwxfw4ydidc4a6zkm2w2obha7kz5ci3zo2rp46cqrjqpq4u");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftListByMetadataId(
+            string metadataId,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { meta = new { id_eq = metadataId } };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
+        }
+
+        /// <summary>
+        /// returns NFTs where metadata match Collection metadata id
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftListByCollectionMetadataId("ipfs://ipfs/bafkreiedd24yprvqul5ph6zf2vnbvtmhe75fdstfvwnco73v75yjvydnde");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftListByCollectionMetadataId(
+            string collectionMetadataId,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { collection = new { meta = new { id_eq = collectionMetadataId } } };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
+        }
+
+        /// <summary>
+        /// returns NFTs owned by the address
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftListByOwner("EyhuHahinimJJSTSuN2JNru3EFL3ry9dGKDfefbXUtJzjnb");
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftListByOwner(
+            string address,
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { currentOwner_eq = address };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
+        }
+
+        /// <summary>
+        /// returns NFTs
+        /// <example>
+        /// <code>
+        /// await Uniquery.RmrkV2.NftList(forSale: true);
+        /// </code>
+        /// </example>
+        /// </summary>
+        public static async Task<List<RmrkV2Nft>> NftList(
+            int limit = 25,
+            int offset = 0,
+            string orderBy = "updatedAt_DESC",
+            bool forSale = false,
+            int eventsLimit = 10,
+            int emotesLimit = 10)
+        {
+            var filter = new { };
+
+            var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
+                filter,
+                limit,
+                offset,
+                orderBy,
+                forSale,
+                eventsLimit,
+                emotesLimit
+                );
+
+            return nfts;
         }
     }
 }
