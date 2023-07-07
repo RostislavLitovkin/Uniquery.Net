@@ -85,7 +85,7 @@ namespace Uniquery
 
             foreach (var collection in graphQLResponse.Data.Collections.Data)
             {
-                //collection.NetworkFormat = "quartz";
+                collection.NetworkFormat = "quartz";
             }
 
             return graphQLResponse.Data.Collections.Data;

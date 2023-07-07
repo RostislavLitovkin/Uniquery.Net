@@ -429,7 +429,7 @@ async Task RmrkV2Test() {
     }
 }
 
-await RmrkV2Test();
+await UniversalTest();
 
 Console.WriteLine("Done");
 Console.ReadKey();

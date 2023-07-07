@@ -44,7 +44,6 @@ namespace Uniquery
 
             if (!collections.Any())
             {
-                Console.WriteLine("No collection found.");
                 throw new Exception("No collection found.");
             }
 
