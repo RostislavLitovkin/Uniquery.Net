@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-    public class RmrkEvent
+    public class BasiliskEvent
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -23,14 +23,17 @@ namespace Uniquery
         public string CurrentOwner { get; set; }
 
         [JsonPropertyName("interaction")]
-        public RmrkInteraction Interaction { get; set; }
+        public BasiliskInteraction Interaction { get; set; }
 
         [JsonPropertyName("meta")]
         public string Meta { get; set; }
 
+        [JsonPropertyName("nft")]
+        public BasiliskNft Nft { get; set; }
+
         public override string ToString()
         {
-            return "Rmrk event: " + Interaction + " - " + Id + "\n";
+            return "Basilisk event: " + Interaction + " - " + Id + "\n";
         }
     }
 

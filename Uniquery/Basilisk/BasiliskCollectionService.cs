@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Text.Json.Serialization;
 using GraphQL;
-using GraphQL.Client.Abstractions;
-using GraphQL.Client.Http;
+using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-    public static class RmrkCollectionService
-    {
+	public class BasiliskCollectionService
+	{
         private class ResponseType
         {
             [JsonPropertyName("collectionEntities")]
-            public List<RmrkCollection> CollectionEntities { get; set; }
+            public List<BasiliskCollection> CollectionEntities { get; set; }
         }
 
-        public static async Task<List<RmrkCollection>> GetCollectionEntitiesAsync(
+        public static async Task<List<BasiliskCollection>> GetCollectionEntitiesAsync(
             object filter,
             int limit = 25,
             int offset = 0,
@@ -26,38 +24,46 @@ namespace Uniquery
                 Query = @"
                     query MyQuery ($limit: Int!, $offset: Int!, $where: CollectionEntityWhereInput, $orderBy: [CollectionEntityOrderByInput!]!) {
                       collectionEntities(limit: $limit, offset: $offset, where: $where, orderBy: $orderBy) {
-                        version
-                        updatedAt
-                        symbol
-                        supply
-                        nftCount
-                        name
-                        metadata
-                        max
-                        issuer
-                        currentOwner
-                        createdAt
                         blockNumber
+                        burned
+                        createdAt
+                        currentOwner
+                        distribution
+                        floor
+                        highestSale
                         id
+                        image
+                        issuer
+                        media
+                        metadata
+                        name
+                        nftCount
+                        ownerCount
+                        supply
+                        type
+                        updatedAt
+                        volume
                         meta {
-                          animationUrl
-                          description
-                          id
-                          image
-                          name
-                          type
-                          attributes {
+                            animationUrl
+                            description
+                            id
+                            name
+                            image
+                            type
+                            attributes {
                             display
                             trait
                             value
-                          }
+                            }
                         }
                         events {
-                          blockNumber
-                          caller
-                          meta
-                          interaction
-                          timestamp
+                            blockNumber
+                            caller
+                            currentOwner
+                            interaction
+                            id
+                            meta
+                            timestamp
                         }
                       }
                     }",
@@ -71,7 +77,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Rmrk.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Basilisk.client.SendQueryAsync<ResponseType>(request);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {
@@ -83,7 +89,7 @@ namespace Uniquery
 
             foreach (var collection in graphQLResponse.Data.CollectionEntities)
             {
-                collection.NetworkFormat = "rmrk";
+                collection.NetworkFormat = "basilisk";
             }
 
             return graphQLResponse.Data.CollectionEntities;
