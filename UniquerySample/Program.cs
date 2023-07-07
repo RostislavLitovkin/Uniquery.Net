@@ -25,10 +25,7 @@ async Task RmrkTest()
 
     Console.WriteLine(await Uniquery.Rmrk.CollectionById("7EA1DCF47E98A25067-CAVE"));
 
-
     Console.WriteLine(await Uniquery.Rmrk.NftById("18636665-C4F63647002B182C0E-WOLF4-WOLF4_2-0000000000000002"));
-
-
 
     var nfts = await Uniquery.Rmrk.NftListByCollectionId("A4EC02A6BEF317A726-ACCTT");
 
@@ -44,15 +41,12 @@ async Task RmrkTest()
         Console.WriteLine(nft);
     }
 
-
-
     nfts = await Uniquery.Rmrk.NftList(forSale: true);
 
     foreach (var nft in nfts)
     {
         Console.WriteLine(nft);
     }
-
 
     nfts = await Uniquery.Rmrk.NftListByMetadataId("ipfs://ipfs/bafkreib26sbxwxfw4ydidc4a6zkm2w2obha7kz5ci3zo2rp46cqrjqpq4u");
 
@@ -87,7 +81,7 @@ async Task RmrkTest()
         Console.WriteLine(e);
     }
 
-    events = await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.Buy);
+    events = await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.BUY);
     foreach (var e in events)
     {
         Console.WriteLine(e);
@@ -337,6 +331,101 @@ async Task UniversalTest()
     foreach (var nft in nfts)
     {
         Console.WriteLine(nft);
+    }
+}
+
+async Task RmrkV2Test() {
+    var collections = await Uniquery.RmrkV2.CollectionListByIssuer("HCh9nv6WcmUAxhYEbqtBdfhyj7QNyqNzHJZhm5Y9v365Xbi");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    collections = await Uniquery.RmrkV2.CollectionListByName("kus");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    collections = await Uniquery.RmrkV2.CollectionListByOwner("HCh9nv6WcmUAxhYEbqtBdfhyj7QNyqNzHJZhm5Y9v365Xbi");
+
+    foreach (var collection in collections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    Console.WriteLine(await Uniquery.RmrkV2.CollectionById("ccae98d28cd76f9015-GRAFF"));
+
+    Console.WriteLine(await Uniquery.RmrkV2.NftById("11685626-587a4c5c08ef2f0e51-RUG_PULL-TOPHAT_11-00000011"));
+
+    var nfts = await Uniquery.RmrkV2.NftListByCollectionId("A4EC02A6BEF317A726-ACCTT");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.RmrkV2.NftListByName("shape", forSale: true);
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.RmrkV2.NftList(forSale: true);
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.RmrkV2.NftListByMetadataId("ipfs://ipfs/bafkreib26sbxwxfw4ydidc4a6zkm2w2obha7kz5ci3zo2rp46cqrjqpq4u");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.RmrkV2.NftListByCollectionMetadataId("ipfs://ipfs/bafkreiedd24yprvqul5ph6zf2vnbvtmhe75fdstfvwnco73v75yjvydnde");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    nfts = await Uniquery.RmrkV2.NftListByOwner("EyhuHahinimJJSTSuN2JNru3EFL3ry9dGKDfefbXUtJzjnb");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    var events = await Uniquery.RmrkV2.EventList();
+
+    events = await Uniquery.RmrkV2.EventListByAddress("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByInteraction(Uniquery.RmrkV2Interaction.BUY);
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByCollectionId("C4F63647002B182C0E-NEON");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByNftId("18641451-C4F63647002B182C0E-WOLF-WOLF_2-0000000000000002");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
     }
 }
 

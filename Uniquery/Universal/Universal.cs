@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Reflection.Metadata;
 
 namespace Uniquery
@@ -23,6 +24,15 @@ namespace Uniquery
             try
             {
                 var collection = await Rmrk.CollectionById(id, limit, offset);
+                collections.Add(collection);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var collection = await RmrkV2.CollectionById(id, limit, offset);
                 collections.Add(collection);
             }
             catch
@@ -98,6 +108,7 @@ namespace Uniquery
             List<Collection> collections = new List<Collection>();
 
             collections.AddRange(await Rmrk.CollectionListByIssuer(issuerAddress, limit, offset));
+            collections.AddRange(await RmrkV2.CollectionListByIssuer(issuerAddress, limit, offset));
             collections.AddRange(await Unique.CollectionListByIssuer(issuerAddress, limit, offset));
             collections.AddRange(await Quartz.CollectionListByIssuer(issuerAddress, limit, offset));
             collections.AddRange(await Opal.CollectionListByIssuer(issuerAddress, limit, offset));
@@ -122,6 +133,7 @@ namespace Uniquery
             List<Collection> collections = new List<Collection>();
 
             collections.AddRange(await Rmrk.CollectionListByName(collectionName, limit, offset));
+            collections.AddRange(await RmrkV2.CollectionListByName(collectionName, limit, offset));
             collections.AddRange(await Unique.CollectionListByName(collectionName, limit, offset));
             collections.AddRange(await Quartz.CollectionListByName(collectionName, limit, offset));
             collections.AddRange(await Opal.CollectionListByName(collectionName, limit, offset));
@@ -146,6 +158,7 @@ namespace Uniquery
             List<Collection> collections = new List<Collection>();
 
             collections.AddRange(await Rmrk.CollectionListByOwner(ownerAddress, limit, offset));
+            collections.AddRange(await RmrkV2.CollectionListByOwner(ownerAddress, limit, offset));
             collections.AddRange(await Unique.CollectionListByOwner(ownerAddress, limit, offset));
             collections.AddRange(await Quartz.CollectionListByOwner(ownerAddress, limit, offset));
             collections.AddRange(await Opal.CollectionListByOwner(ownerAddress, limit, offset));
@@ -175,6 +188,15 @@ namespace Uniquery
             try
             {
                 var nft = await Rmrk.NftById(id, limit, offset, orderBy, forSale, eventsLimit);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var nft = await RmrkV2.NftById(id, limit, offset, orderBy, forSale, eventsLimit);
                 nfts.Add(nft);
             }
             catch
@@ -252,6 +274,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
             int iCollectionId;
             if (int.TryParse(collectionId, out iCollectionId))
             {
@@ -283,6 +306,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Unique.NftListByName(name, limit, offset));
             nfts.AddRange(await Quartz.NftListByName(name, limit, offset));
             nfts.AddRange(await Opal.NftListByName(name, limit, offset));
@@ -310,6 +334,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
             // Unique, Quartz, Opal are not supported.
             nfts.AddRange(await Basilisk.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
 
@@ -335,6 +360,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
             // Unique, Quartz, Opal are not supported.
             nfts.AddRange(await Basilisk.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
 
@@ -360,6 +386,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Unique.NftListByOwner(address, limit, offset));
             nfts.AddRange(await Quartz.NftListByOwner(address, limit, offset));
             nfts.AddRange(await Opal.NftListByOwner(address, limit, offset));
@@ -386,6 +413,7 @@ namespace Uniquery
             List<Nft> nfts = new List<Nft>();
 
             nfts.AddRange(await Rmrk.NftList(limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await RmrkV2.NftList(limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Unique.NftList(limit, offset));
             nfts.AddRange(await Quartz.NftList(limit, offset));
             nfts.AddRange(await Opal.NftList(limit, offset));
