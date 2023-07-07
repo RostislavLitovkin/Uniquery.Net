@@ -81,7 +81,7 @@ async Task RmrkTest()
         Console.WriteLine(e);
     }
 
-    events = await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.Buy);
+    events = await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.BUY);
     foreach (var e in events)
     {
         Console.WriteLine(e);
@@ -400,6 +400,32 @@ async Task RmrkV2Test() {
     foreach (var nft in nfts)
     {
         Console.WriteLine(nft);
+    }
+
+    var events = await Uniquery.RmrkV2.EventList();
+
+    events = await Uniquery.RmrkV2.EventListByAddress("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByInteraction(Uniquery.RmrkV2Interaction.BUY);
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByCollectionId("C4F63647002B182C0E-NEON");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
+    }
+
+    events = await Uniquery.RmrkV2.EventListByNftId("18641451-C4F63647002B182C0E-WOLF-WOLF_2-0000000000000002");
+    foreach (var e in events)
+    {
+        Console.WriteLine(e);
     }
 }
 

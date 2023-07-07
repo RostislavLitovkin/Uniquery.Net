@@ -440,7 +440,7 @@ namespace Uniquery
         /// returns events by interaction
         /// <example>
         /// <code>
-        /// await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.Buy);
+        /// await Uniquery.Rmrk.EventListByInteraction(Uniquery.RmrkInteraction.BUY);
         /// </code>
         /// </example>
         /// </summary>
