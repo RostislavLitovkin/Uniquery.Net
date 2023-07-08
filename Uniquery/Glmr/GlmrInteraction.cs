@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uniquery.GlmrImpl
+namespace Uniquery
 {
     public enum GlmrInteraction
     {

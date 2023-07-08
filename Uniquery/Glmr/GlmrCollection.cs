@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Numerics;
-using Uniquery.GlmrImpl;
 
 namespace Uniquery
 {
-    public class GlmrCollections
+    public class GlmrCollection
     {
         public BigInteger? BlockNumber { get; set; }
         public bool? Burned { get; set; }

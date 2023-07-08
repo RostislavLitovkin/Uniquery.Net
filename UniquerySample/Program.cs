@@ -197,6 +197,7 @@ foreach (var nft in nfts)
 Console.WriteLine("Done");
 */
 
+/*
 Console.WriteLine(await Uniquery.Basilisk.CollectionById("1"));
 
 var collections = await Uniquery.Basilisk.CollectionListByIssuer("bXj4uMHTrBtVfmVMDpQ1AyUUNbnvLaRPcBDVTeLffL2h2U3KE");
@@ -292,4 +293,164 @@ foreach (var e in events)
     Console.WriteLine(e);
 }
 
+Console.ReadKey();
+*/
+
+Console.WriteLine("Uniquery.Glmr.CollectionById");
+var GlmrCollections = await Uniquery.Glmr.CollectionById("0xb6e9e605aa159017173caa6181c522db455f6661", limit: 3);
+foreach (var e in GlmrCollections)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.CollectionListByIssuer");
+GlmrCollections = await Uniquery.Glmr.CollectionListByIssuer("0x24312a0b911fE2199fbea92efab55e2ECCeC637D", limit: 3);
+foreach (var e in GlmrCollections)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.CollectionListByName");
+GlmrCollections = await Uniquery.Glmr.CollectionListByName("Damned Pirates Society", limit: 3);
+foreach (var e in GlmrCollections)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.CollectionListByOwner");
+GlmrCollections = await Uniquery.Glmr.CollectionListByOwner("0xee6a0d688aA4b6a6BCfd4abEfFCB5ff731aFA9A0", limit: 3);
+foreach (var e in GlmrCollections)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.EventList");
+var GlmrEvents = await Uniquery.Glmr.EventList(limit: 3);
+foreach (var e in GlmrEvents)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+
+Console.WriteLine("Uniquery.Glmr.EventListByInteraction");
+/*events = await Uniquery.Glmr.EventListByInteraction(Uniquery.GlmrInteraction.MintNft);
+foreach (var e in events)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}*/
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.EventListByAddress");
+GlmrEvents = await Uniquery.Glmr.EventListByAddress("0xB047680e18b6dAD110883A08C9A73D655De9B8A8", limit: 3);
+foreach (var e in GlmrEvents)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.EventListByCollectionId");
+GlmrEvents = await Uniquery.Glmr.EventListByCollectionId("0xd3a9c48df4d9342dc1a0ee2c185ce50588729fa9", limit: 3);
+foreach (var e in GlmrEvents)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.EventListByNftId");
+GlmrEvents = await Uniquery.Glmr.EventListByNftId("0xd3a9c48df4d9342dc1a0ee2c185ce50588729fa9-1", limit: 3);
+foreach (var e in GlmrEvents)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftById");
+var GlmrNfts = await Uniquery.Glmr.NftById("0xb6e9e605aa159017173caa6181c522db455f6661-760", limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftList");
+GlmrNfts = await Uniquery.Glmr.NftList(limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByCollectionId");
+/*GlmrNfts = await Uniquery.Glmr.NftListByCollectionId(, limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+*/
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByCollectionMetadataId");
+/*GlmrNfts = await Uniquery.Glmr.NftListByCollectionMetadataId(, limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}*/
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByMetadataId");
+/*GlmrNfts = await Uniquery.Glmr.NftListByMetadataId(, limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}*/
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByCollectionMetadataId");
+/*GlmrNfts = await Uniquery.Glmr.NftListByMetadataId(, limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}*/
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByName");
+/*GlmrNfts = await Uniquery.Glmr.NftListByName(, limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}*/
+
+Console.WriteLine("==================================================================================================");
+Console.WriteLine("Uniquery.Glmr.NftListByName");
+GlmrNfts = await Uniquery.Glmr.NftListByOwner("0xd47991C1B656c391C59f7Ea90028267C24f60b49", limit: 3);
+foreach (var e in GlmrNfts)
+{
+    Console.WriteLine(e);
+    Console.WriteLine();
+}
+
+
+
+
+Console.WriteLine("FIN Success");
 Console.ReadKey();

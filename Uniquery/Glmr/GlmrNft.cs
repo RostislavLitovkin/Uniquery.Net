@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace Uniquery.GlmrImpl
+namespace Uniquery
 {
     public class GlmrNft
     {
@@ -20,7 +20,7 @@ namespace Uniquery.GlmrImpl
         public bool? Burned { get; set; }
 
         [JsonPropertyName("collection")]
-        public GlmrCollections? Collection { get; set; }
+        public GlmrCollection? Collection { get; set; }
 
         [JsonPropertyName("createdAt")]
         public DateTime? CreatedAt { get; set; }
@@ -60,5 +60,12 @@ namespace Uniquery.GlmrImpl
 
         [JsonPropertyName("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
+
+        public override string ToString()
+        {
+            return "Glmr nft: " + Name + " - " + Sn + " owned by " + CurrentOwner + " (id: " + Id + ")"
+                + "\n" + (Meta != null ? "Description : " + Meta.Description : "Metadata: " + Metadata) + "\n" +
+                "Currently selling for: " + Price + "\n";
+        }
     }
 }

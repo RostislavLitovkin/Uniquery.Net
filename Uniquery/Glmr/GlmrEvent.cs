@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Uniquery.GlmrImpl;
 
 namespace Uniquery
 {
@@ -37,7 +36,7 @@ namespace Uniquery
 
         public override string ToString()
         {
-            return "Rmrk event: " + Interaction + " - " + Id + "\n";
+            return "Glmr event: " + Interaction + " - " + Id + "\n";
         }
     }
 }
