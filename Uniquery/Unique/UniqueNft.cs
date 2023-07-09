@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace Uniquery
 {
-    public class UniqueNft
+    public class UniqueNft : Nft
     {
         //[JsonPropertyName("attributes")]
         //public string Attributes { get; set; }
@@ -19,32 +19,30 @@ namespace Uniquery
         [JsonPropertyName("children_count")]
         public int? Children_Count { get; set; }
 
-        [JsonPropertyName("collection")]
-        public string Collection { get; set; }
-
         [JsonPropertyName("collection_cover")]
-        public string Collection_Cover { get; set; }
+        public string Collection_Cover { get => Collection.Image; set { Collection.Image = value; } }
 
         [JsonPropertyName("collection_description")]
-        public string Collection_Description { get; set; }
+        public string Collection_Description { get => Meta.Description; set { Meta.Description = value; } }
 
         [JsonPropertyName("collection_id")]
-        public int? Collection_Id { get; set; }
+        public int? Collection_Id { get => int.Parse(Collection.Id); set { if (value != null) { Collection.Id = value.ToString(); } } }
 
         [JsonPropertyName("collection_name")]
-        public string Collection_Name { get; set; }
+        public string Collection_Name { get => Collection.Name; set { Collection.Name = value; } }
 
         [JsonPropertyName("collection_owner")]
-        public string Collection_Owner { get; set; }
+        public string Collection_Owner { get => Collection.CurrentOwner; set { Collection.CurrentOwner = value; } }
 
         [JsonPropertyName("collection_owner_normalized")]
         public string Collection_Owner_Normalized { get; set; }
 
         [JsonPropertyName("date_of_creation")]
-        public int? Date_Of_Creation { get; set; }
+        public int? Date_Of_Creation { get => (int)CreatedAt.ToUniversalTime().Ticks; set { if (value != null) CreatedAt = new DateTime((long)value, DateTimeKind.Utc); } }
 
+        private UniqueImage image;
         [JsonPropertyName("image")]
-        public UniqueImage Image { get; set; }
+        public UniqueImage Image { get => image; set { image = value; Meta.Image = value.FullUrl; } }
 
         [JsonPropertyName("is_sold")]
         public bool? Is_Sold { get; set; }
@@ -53,7 +51,7 @@ namespace Uniquery
         public bool? Nested { get; set; }
 
         [JsonPropertyName("owner")]
-        public string Owner { get; set; }
+        public string Owner { get => CurrentOwner; set { CurrentOwner = value; } }
 
         [JsonPropertyName("owner_normalized")]
         public string Owner_Normalized { get; set; }
@@ -65,10 +63,10 @@ namespace Uniquery
         //public string Properties { get; set; }
 
         [JsonPropertyName("token_id")]
-        public int? Token_Id { get; set; }
+        public int? Token_Id { get { int result; if (int.TryParse(Id.AsSpan(), out result)) return result; return null; } set { if (value != null) Id = value.ToString(); } }
 
         [JsonPropertyName("token_name")]
-        public string Token_Name { get; set; }
+        public string Token_Name { get => Name; set { Name = value; Meta.Name = value; } }
 
         [JsonPropertyName("token_prefix")]
         public string Token_Prefix { get; set; }
@@ -90,12 +88,6 @@ namespace Uniquery
 
         [JsonPropertyName("transfers_count")]
         public int? Transfers_Count { get; set; }
-
-        public override string ToString()
-        {
-            return "Unique nft: " + Collection_Name + " owned by " + Owner + " (id: " + Token_Id + ")"
-                + "Description : " + Collection_Description + "\n";
-        }
     }
 
 }

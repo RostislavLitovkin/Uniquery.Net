@@ -10,9 +10,6 @@ namespace Uniquery
         {
             [JsonPropertyName("tokens")]
             public NftsWrapper Tokens { get; set; }
-
-            [JsonPropertyName("count")]
-            public int Count { get; set; }
         }
 
         private class NftsWrapper
@@ -59,7 +56,6 @@ namespace Uniquery
                           total_pieces
                           transfers_count
                         }
-                        count
                       }
                     }",
                 OperationName = "MyQuery",
@@ -79,6 +75,11 @@ namespace Uniquery
                 {
                     throw new Exception(error.Message);
                 }
+            }
+
+            foreach (var nft in graphQLResponse.Data.Tokens.Data)
+            {
+                nft.NetworkFormat = "unique";
             }
 
             return graphQLResponse.Data.Tokens.Data;

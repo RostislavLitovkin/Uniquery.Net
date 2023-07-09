@@ -1,24 +1,23 @@
-﻿using System;
-using GraphQL;
+﻿using GraphQL;
 using System.Text.Json.Serialization;
 
 namespace Uniquery
 {
-	public class RmrkNftService
-	{
+    internal class RmrkV2NftService
+    {
         private class ResponseType
         {
             [JsonPropertyName("nftEntities")]
-            public List<RmrkNft> NftEntities { get; set; }
+            public List<RmrkV2Nft> NftEntities { get; set; }
         }
 
-        private class RmrkNftGraphQLVariables: GraphQLVariables
+        private class RmrkV2NftGraphQLVariables : GraphQLVariables
         {
             public int eventsLimit { get; set; }
             public int emotesLimit { get; set; }
         }
 
-        public static async Task<List<RmrkNft>> GetNftEntitiesAsync(
+        public static async Task<List<RmrkV2Nft>> GetNftEntitiesAsync(
             object filter,
             int limit = 25,
             int offset = 0,
@@ -28,7 +27,6 @@ namespace Uniquery
             int emotesLimit = 10
         )
         {
-
             GraphQLRequest request = new GraphQLRequest
             {
                 Query = @"
@@ -41,21 +39,56 @@ namespace Uniquery
                         createdAt
                         currentOwner
                         emoteCount
+                        collection {
+                          blockNumber
+                          createdAt
+                          currentOwner
+                          hash
+                          id
+                          image
+                          issuer
+                          max
+                          media
+                          metadata
+                          nftCount
+                          name
+                          supply
+                          symbol
+                          updatedAt
+                          version
+                        }
                         hash
                         id
-                        issuer
+                        image
                         instance
+                        issuer
+                        media
+                        metadata
                         name
+                        pending
                         price
+                        recipient
+                        royalty
                         sn
                         transferable
                         updatedAt
+                        version
+                        events(limit: $eventsLimit, orderBy: timestamp_DESC) {
+                          blockNumber
+                          caller
+                          id
+                          currentOwner
+                          interaction
+                          timestamp
+                          version
+                          meta
+                        }
                         meta {
                           animationUrl
                           description
-                          id
                           image
                           name
+                          id
                           type
                           attributes {
                             display
@@ -63,40 +96,16 @@ namespace Uniquery
                             value
                           }
                         }
-                        metadata
-                        events(limit: $eventsLimit, orderBy: timestamp_DESC) {
-                          blockNumber
-                          caller
-                          currentOwner
-                          id
-                          interaction
-                          meta
-                          timestamp
-                        }
                         emotes(limit: $emotesLimit) {
                           caller
                           id
                           value
-                        }
-                        collection {
-                            blockNumber
-                            createdAt
-                            currentOwner
-                            id
-                            issuer
-                            max
-                            metadata
-                            name
-                            nftCount
-                            symbol
-                            supply
-                            updatedAt
-                            version
+                          version
                         }
                       }
                     }",
                 OperationName = "MyQuery",
-                Variables = new RmrkNftGraphQLVariables
+                Variables = new RmrkV2NftGraphQLVariables
                 {
                     where = filter,
                     offset = offset,
@@ -106,8 +115,8 @@ namespace Uniquery
                     emotesLimit = emotesLimit,
                 },
             };
-            
-            var graphQLResponse = await Rmrk.client.SendQueryAsync<ResponseType>(request);
+
+            var graphQLResponse = await RmrkV2.client.SendQueryAsync<ResponseType>(request);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {
@@ -119,11 +128,10 @@ namespace Uniquery
 
             foreach (var nft in graphQLResponse.Data.NftEntities)
             {
-                nft.NetworkFormat = "rmrk";
+                nft.NetworkFormat = "rmrk2";
             }
 
             return graphQLResponse.Data.NftEntities;
         }
     }
 }
-

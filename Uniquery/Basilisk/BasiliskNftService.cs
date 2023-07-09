@@ -129,6 +129,11 @@ namespace Uniquery
                 }
             }
 
+            foreach (var nft in graphQLResponse.Data.NftEntities)
+            {
+                nft.NetworkFormat = "basilisk";
+            }
+
             return graphQLResponse.Data.NftEntities;
         }
     }
