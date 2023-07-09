@@ -9,25 +9,12 @@ namespace Uniquery
 {
     public enum GlmrInteraction
     {
-        [JsonPropertyName("MINT")]
-        Mint,
-
-        [JsonPropertyName("MINTNFT")]
-        MintNft,
-
-        [JsonPropertyName("LIST")]
-        List,
-
-        [JsonPropertyName("UNLIST")]
-        Unlist,
-
-        [JsonPropertyName("BUY")]
-        Buy,
-
-        [JsonPropertyName("SEND")]
-        Send,
-
-        [JsonPropertyName("CONSUME")]
-        Consume,
+        MINT,
+        MINTNFT,
+        LIST,
+        UNLIST,
+        BUY,
+        SEND,
+        CONSUME,
     }
 }

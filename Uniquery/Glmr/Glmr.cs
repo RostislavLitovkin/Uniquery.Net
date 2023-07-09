@@ -35,7 +35,7 @@ namespace Uniquery
         /// </code>
         /// </example>
         /// </summary>
-        public static async Task<List<GlmrCollection>> CollectionById(
+        public static async Task<GlmrCollection> CollectionById(
             string id,
             int limit = 25,
             int offset = 0,
@@ -55,7 +55,7 @@ namespace Uniquery
                 throw new Exception("No collection found.");
             }
 
-            return collections;
+            return collections[0];
         }
 
         /// <summary>
@@ -80,11 +80,6 @@ namespace Uniquery
                 offset,
                 orderBy
                 );
-
-            if (!collections.Any())
-            {
-                throw new Exception("No collection found.");
-            }
 
             return collections;
         }
@@ -112,11 +107,6 @@ namespace Uniquery
                 orderBy
                 );
 
-            if (!collections.Any())
-            {
-                throw new Exception("No collection found.");
-            }
-
             return collections;
         }
 
@@ -143,10 +133,6 @@ namespace Uniquery
                 orderBy
                 );
 
-            if (!collections.Any())
-            {
-                throw new Exception("No collection found.");
-            }
 
             return collections;
         }
@@ -171,23 +157,17 @@ namespace Uniquery
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
             var filter = new { id_eq = id };
+
             var nfts = await GlmrNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -206,23 +186,17 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
-            var filter = new { id_eq = collectionId };
+            var filter = new { collection = new { id_eq = collectionId } };
+
             var nfts = await GlmrNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -241,8 +215,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
             var filter = new { name_containsInsensitive = name };
             var nfts = await GlmrNftService.GetNftEntitiesAsync(
@@ -250,14 +223,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -276,23 +243,16 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
-            var filter = new { meta = new { id_eq = metadataId } };
+            var filter = new { metadata_eq = metadataId };
             var nfts = await GlmrNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -311,24 +271,17 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
-            var filter = new { collection = new { meta = new { id_eq = collectionMetadataId } } };
+            var filter = new { collection = new { metadata_eq = collectionMetadataId } };
 
             var nfts = await GlmrNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -347,8 +300,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
             var filter = new { currentOwner_eq = address };
 
@@ -357,14 +309,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -382,8 +328,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10,
-            int nftsLimit = 10)
+            int eventsLimit = 10)
         {
             var filter = new { };
 
@@ -392,14 +337,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit,
-                nftsLimit
+                eventsLimit
                 );
-
-            if (!nfts.Any())
-            {
-                throw new Exception("No nft found.");
-            }
 
             return nfts;
         }
@@ -487,7 +426,7 @@ namespace Uniquery
         /// returns events by interaction
         /// <example>
         /// <code>
-        /// await Uniquery.Glmr.EventListByInteraction(Uniquery.GlmrInteraction.Buy);
+        /// await Uniquery.Glmr.EventListByInteraction(Uniquery.GlmrInteraction.MINTNFT);
         /// </code>
         /// </example>
         /// </summary>

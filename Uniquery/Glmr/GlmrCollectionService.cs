@@ -25,61 +25,61 @@ namespace Uniquery
         {
             GraphQLRequest request = new GraphQLRequest
             {
-                Query = @"query MyQuery($limit: Int, $offset: Int, $orderBy: [CollectionEntityOrderByInput!], $where: CollectionEntityWhereInput) {
-  collectionEntities(limit: $limit, orderBy: $orderBy, offset: $offset, where: $where) {
-    createdAt
-    blockNumber
-    id
-    currentOwner
-    burned
-    issuer
-    max
-    metadata
-    name
-    symbol
-    updatedAt
-    type
-    nfts(limit: 10) {
-      blockNumber
-      burned
-      count
-      createdAt
-      currentOwner
-      hash
-      id
-      issuer
-      metadata
-      name
-      price
-      royalty
-      sn
-      updatedAt
-      meta {
-        animationUrl
-        description
-        id
-        image
-        type
-        name
-        attributes {
-          display
-          trait
-          value
-        }
-      }
-      events(limit: 10) {
-        blockNumber
-        caller
-        currentOwner
-        interaction
-        id
-        meta
-        timestamp
-      }
-    }
-  }
-}
-",
+                Query = @"
+                    query MyQuery($limit: Int, $offset: Int, $orderBy: [CollectionEntityOrderByInput!], $where: CollectionEntityWhereInput) {
+                      collectionEntities(limit: $limit, orderBy: $orderBy, offset: $offset, where: $where) {
+                        createdAt
+                        blockNumber
+                        id
+                        currentOwner
+                        burned
+                        issuer
+                        max
+                        metadata
+                        name
+                        symbol
+                        updatedAt
+                        type
+                        nfts(limit: 10) {
+                          blockNumber
+                          burned
+                          count
+                          createdAt
+                          currentOwner
+                          hash
+                          id
+                          issuer
+                          metadata
+                          name
+                          price
+                          royalty
+                          sn
+                          updatedAt
+                          meta {
+                            animationUrl
+                            description
+                            id
+                            image
+                            type
+                            name
+                            attributes {
+                              display
+                              trait
+                              value
+                            }
+                          }
+                          events(limit: 10) {
+                            blockNumber
+                            caller
+                            currentOwner
+                            interaction
+                            id
+                            meta
+                            timestamp
+                          }
+                        }
+                      }
+                    }",
                 OperationName = "MyQuery",
                 Variables = new GraphQLVariables
                 {
