@@ -25,15 +25,18 @@ namespace Uniquery
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC",
-            int eventsLimit = 10
+            int eventsLimit = 10,
+            bool forSale = false
         )
         {
 
             GraphQLRequest request = new GraphQLRequest
             {
                 Query = @"
-                    query MyQuery($limit: Int, $offset: Int, $orderBy: [NFTEntityOrderByInput!], $where: NFTEntityWhereInput, $eventsLimit: Int) {
-                        nftEntities(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {
+                    query MyQuery($limit: Int, $offset: Int, $orderBy: [NFTEntityOrderByInput!], $where: NFTEntityWhereInput!, $eventsLimit: Int) {
+                        nftEntities(limit: $limit, offset: $offset, orderBy: $orderBy, where: " + 
+                        (forSale ? @"{ AND: [ { price_not_eq: ""0"" }, $where] }" : "$where")
+                        + @") {
                             blockNumber
                             burned
                             count

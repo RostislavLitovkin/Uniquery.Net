@@ -195,7 +195,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
@@ -223,7 +224,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
@@ -251,7 +253,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
@@ -280,7 +283,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
@@ -309,7 +313,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
@@ -337,7 +342,8 @@ namespace Uniquery
                 limit,
                 offset,
                 orderBy,
-                eventsLimit
+                eventsLimit,
+                forSale
                 );
 
             return nfts;
