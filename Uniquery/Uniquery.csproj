@@ -4,6 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageReadmeFile>../README.md</PackageReadmeFile>
+    <Version>0.1.0</Version>
+    <Authors>Rostislav Litovkin</Authors>
+    <Product>Uniquery.net</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,5 +32,9 @@
     <Folder Include="Quartz\" />
     <Folder Include="Opal\" />
     <Folder Include="Universal\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
