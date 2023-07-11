@@ -22,9 +22,6 @@ namespace Uniquery
         [JsonPropertyName("issuer")]
         public string Issuer { get; set; }
 
-        [JsonPropertyName("meta")]
-        public MovrMetadata? Meta { get; set; }
-
         [JsonPropertyName("metadata")]
         public string Metadata { get; set; }
 
