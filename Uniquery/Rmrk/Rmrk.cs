@@ -1,6 +1,8 @@
 ﻿using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Substrate.NetApi;
 using System.Net;
+using System.Security.Cryptography;
 
 namespace Uniquery
 {
@@ -11,6 +13,8 @@ namespace Uniquery
         public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
             "https://squid.subsquid.io/rubick/graphql", new NewtonsoftJsonSerializer()
         );
+
+        const int SS58_PREFIX = 2;
 
         /// <summary>
         /// Returns collection by id.
@@ -313,7 +317,7 @@ namespace Uniquery
             int eventsLimit = 10,
             int emotesLimit = 10)
         {
-            var filter = new { currentOwner_eq = address };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var nfts = await RmrkNftService.GetNftEntitiesAsync(
                 filter,

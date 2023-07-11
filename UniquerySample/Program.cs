@@ -1,5 +1,7 @@
 ﻿// This is a sample of how to use Uniquery
 
+using Uniquery;
+
 async Task RmrkTest()
 {
     var collections = await Uniquery.Rmrk.CollectionListByIssuer("GJZUpyxcKWEP4yGqBprRiif6AhLnBtfVEfxhu3hTVS1XDZz");
@@ -712,7 +714,12 @@ async Task MovrTest()
 }
 
 
-await MovrTest();
+var nfts = await Uniquery.Rmrk.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+
+foreach (var nft in nfts)
+{
+    Console.WriteLine(nft);
+}
 
 Console.WriteLine("\nDone");
 Console.ReadKey();
