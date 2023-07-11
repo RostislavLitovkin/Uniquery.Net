@@ -36,7 +36,7 @@ namespace Uniquery
         public override string ToString()
         {
             return NetworkFormat + " collection: " + Name + " by " + CurrentOwner + " (id: " + Id + ")"
-                + "\nDescription : " + Meta.Description + "\n";
+                + "\nDescription : " + ((Meta != null) ? Meta.Description : null) + "\n";
         }
     }
 }
