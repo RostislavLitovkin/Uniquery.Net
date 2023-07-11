@@ -429,7 +429,139 @@ async Task RmrkV2Test() {
     }
 }
 
-await UniversalTest();
+async Task MovrTest()
+{
+    Console.WriteLine("CollectionListByIssuer ===================================");
+    var movrCollections = await Uniquery.Movr.CollectionListByIssuer("0x4929f7cb5977bc07c4DF658086aaF25c20052FbA", limit: 3);
 
-Console.WriteLine("Done");
+    foreach (var collection in movrCollections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    Console.WriteLine("CollectionListByName =====================================");
+    movrCollections = await Uniquery.Movr.CollectionListByName("Exiled Racers Pilot", limit: 3);
+
+    foreach (var collection in movrCollections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    Console.WriteLine("CollectionListByOwner ====================================");
+    movrCollections = await Uniquery.Movr.CollectionListByOwner("0x4929f7cb5977bc07c4DF658086aaF25c20052FbA", limit: 3);
+
+    foreach (var collection in movrCollections)
+    {
+        Console.WriteLine(collection);
+    }
+
+    Console.WriteLine("CollectionById ===========================================");
+    Console.WriteLine(await Uniquery.Movr.CollectionById("0x515e20e6275ceefe19221fc53e77e38cc32b80fb"));
+
+
+    Console.WriteLine("NftById ==================================================");
+    Console.WriteLine(await Uniquery.Movr.NftById("0x25714fcbc4be731b95ae86483ef97ef6c3deb5ce-1"));
+
+    Console.WriteLine("NftListByCollectionId ====================================");
+    var movrNfts = await Uniquery.Movr.NftListByCollectionId("0x25714fcbc4be731b95ae86483ef97ef6c3deb5ce", limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    Console.WriteLine("NftListByName ============================================");
+    movrNfts = await Uniquery.Movr.NftListByName("GlmrPunks #1", limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    Console.WriteLine("NftListByName (forSale) ============================================");
+    movrNfts = await Uniquery.Movr.NftListByName("GlmrPunks #1", forSale: true, limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    Console.WriteLine("NftList ==================================================");
+    movrNfts = await Uniquery.Movr.NftList(limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    Console.WriteLine("NftListByMetadataId ======================================");
+    movrNfts = await Uniquery.Movr.NftListByMetadataId("ipfs://QmXoHd7JKjZ8WaCC6yL38wpsVW1SrFyvimBB6TRWMzx1sz/1.json", limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+
+    Console.WriteLine("NftListByCollectionMetadataId ============================");
+    movrNfts = await Uniquery.Movr.NftListByCollectionMetadataId("ipfs://ipfs/QmXoHd7JKjZ8WaCC6yL38wpsVW1SrFyvimBB6TRWMzx1sz/1.json", limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+    Console.WriteLine("NftListByOwner ===========================================");
+    movrNfts = await Uniquery.Movr.NftListByOwner("0x1859CE51044d2171AA9ff8016399EDe4d5536257", limit: 3);
+
+    foreach (var nft in movrNfts)
+    {
+        Console.WriteLine(nft);
+    }
+
+
+    Console.WriteLine("EventList ================================================");
+    var movrEvents = await Uniquery.Movr.EventList(limit: 3);
+    foreach (var e in movrEvents)
+    {
+        Console.WriteLine(e);
+    }
+
+    Console.WriteLine("EventListByAddress =======================================");
+    movrEvents = await Uniquery.Movr.EventListByAddress("0x1859CE51044d2171AA9ff8016399EDe4d5536257", limit: 3);
+
+    foreach (var e in movrEvents)
+    {
+        Console.WriteLine(e);
+    }
+
+    Console.WriteLine("EventListByInteraction ===================================");
+    movrEvents = await Uniquery.Movr.EventListByInteraction(Uniquery.MovrInteraction.MINTNFT, limit: 3);
+
+    foreach (var e in movrEvents)
+    {
+        Console.WriteLine(e);
+    }
+
+    Console.WriteLine("EventListByCollectionId ===================================");
+    movrEvents = await Uniquery.Movr.EventListByCollectionId("0x25714fcbc4be731b95ae86483ef97ef6c3deb5ce", limit: 3);
+
+    foreach (var e in movrEvents)
+    {
+        Console.WriteLine(e);
+    }
+
+    Console.WriteLine("EventListByNftId ==========================================");
+    movrEvents = await Uniquery.Movr.EventListByNftId("0x25714fcbc4be731b95ae86483ef97ef6c3deb5ce-1", limit: 3);
+
+    foreach (var e in movrEvents)
+    {
+        Console.WriteLine(e);
+    }
+}
+
+
+await MovrTest();
+
+Console.WriteLine("\nDone");
 Console.ReadKey();
