@@ -16,7 +16,7 @@ namespace Uniquery
         public String Issuer { get; set; }
         public String? Metadata { get; set; }
         public String? Symbol { get; set; }
-        public String Type { get; set; }
+        public GlmrCollectionType Type { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
 }
