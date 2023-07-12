@@ -4,8 +4,8 @@ using System.Reflection.Metadata;
 
 namespace Uniquery
 {
-	public class Universal
-	{
+    public class Universal
+    {
         /// <summary>
         /// Returns collections by id.
         /// <example>
@@ -87,7 +87,25 @@ namespace Uniquery
             {
 
             }
-            
+            try
+            {
+                var collection = await Glmr.CollectionById(id, limit, offset);
+                collections.Add(collection);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var collection = await Movr.CollectionById(id, limit, offset);
+                collections.Add(collection);
+            }
+            catch
+            {
+
+            }
+
 
             return collections;
         }
@@ -113,6 +131,8 @@ namespace Uniquery
             collections.AddRange(await Quartz.CollectionListByIssuer(issuerAddress, limit, offset));
             collections.AddRange(await Opal.CollectionListByIssuer(issuerAddress, limit, offset));
             collections.AddRange(await Basilisk.CollectionListByIssuer(issuerAddress, limit, offset));
+            collections.AddRange(await Movr.CollectionListByIssuer(issuerAddress, limit, offset));
+            collections.AddRange(await Glmr.CollectionListByIssuer(issuerAddress, limit, offset));
 
             return collections;
         }
@@ -138,6 +158,8 @@ namespace Uniquery
             collections.AddRange(await Quartz.CollectionListByName(collectionName, limit, offset));
             collections.AddRange(await Opal.CollectionListByName(collectionName, limit, offset));
             collections.AddRange(await Basilisk.CollectionListByName(collectionName, limit, offset));
+            collections.AddRange(await Glmr.CollectionListByName(collectionName, limit, offset));
+            collections.AddRange(await Movr.CollectionListByName(collectionName, limit, offset));
 
             return collections;
         }
@@ -163,6 +185,8 @@ namespace Uniquery
             collections.AddRange(await Quartz.CollectionListByOwner(ownerAddress, limit, offset));
             collections.AddRange(await Opal.CollectionListByOwner(ownerAddress, limit, offset));
             collections.AddRange(await Basilisk.CollectionListByOwner(ownerAddress, limit, offset));
+            collections.AddRange(await Glmr.CollectionListByOwner(ownerAddress, limit, offset));
+            collections.AddRange(await Movr.CollectionListByOwner(ownerAddress, limit, offset));
 
             return collections;
         }
@@ -251,6 +275,24 @@ namespace Uniquery
             {
 
             }
+            try
+            {
+                var nft = await Glmr.NftById(id, limit, offset, orderBy, eventsLimit);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var nft = await Movr.NftById(id, limit, offset, orderBy, forSale, eventsLimit);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
 
             return nfts;
         }
@@ -283,6 +325,8 @@ namespace Uniquery
                 nfts.AddRange(await Opal.NftListByCollectionId(iCollectionId, limit, offset));
             }
             nfts.AddRange(await Basilisk.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
@@ -311,6 +355,8 @@ namespace Uniquery
             nfts.AddRange(await Quartz.NftListByName(name, limit, offset));
             nfts.AddRange(await Opal.NftListByName(name, limit, offset));
             nfts.AddRange(await Basilisk.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
@@ -337,6 +383,8 @@ namespace Uniquery
             nfts.AddRange(await RmrkV2.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
             // Unique, Quartz, Opal are not supported.
             nfts.AddRange(await Basilisk.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
@@ -363,6 +411,8 @@ namespace Uniquery
             nfts.AddRange(await RmrkV2.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
             // Unique, Quartz, Opal are not supported.
             nfts.AddRange(await Basilisk.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
@@ -391,6 +441,8 @@ namespace Uniquery
             nfts.AddRange(await Quartz.NftListByOwner(address, limit, offset));
             nfts.AddRange(await Opal.NftListByOwner(address, limit, offset));
             nfts.AddRange(await Basilisk.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
@@ -418,6 +470,8 @@ namespace Uniquery
             nfts.AddRange(await Quartz.NftList(limit, offset));
             nfts.AddRange(await Opal.NftList(limit, offset));
             nfts.AddRange(await Basilisk.NftList(limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Glmr.NftList(limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Movr.NftList(limit, offset, orderBy, forSale, eventsLimit));
 
             return nfts;
         }
