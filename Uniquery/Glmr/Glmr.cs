@@ -152,7 +152,7 @@ namespace Uniquery
         /// </code>
         /// </example>
         /// </summary>
-        public static async Task<List<GlmrNft>> NftById(
+        public static async Task<GlmrNft> NftById(
             string id,
             int limit = 25,
             int offset = 0,
@@ -169,7 +169,7 @@ namespace Uniquery
                 eventsLimit
                 );
 
-            return nfts;
+            return nfts[0];
         }
 
         /// <summary>
