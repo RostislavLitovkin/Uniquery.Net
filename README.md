@@ -16,10 +16,10 @@ This is a c# implementation of [Uniquery](https://github.com/kodadot/uniquery) w
 # Supported Networks/NftStandards
 
 - [x] Rmrk
-- [ ] RmrkV2
+- [x] RmrkV2
 - [x] Basilisk
-- [ ] Glmr
-- [ ] Movr
+- [x] Glmr
+- [x] Movr
 - [x] Unique
 - [x] Quartz
 - [x] Opal
@@ -49,7 +49,14 @@ string id = "7EA1DCF47E98A25067-CAVE";
 var nfts = await Uniquery.Rmrk.NftListByCollectionId(id);
 ```
 
-# Methods
+# Use of Uniquery.Universal
+
+One of the major improvements over the original [Kodadot/Uniquery](https://github.com/kodadot/uniquery) js package is the inclusion of
+`Uniquery.Universal`
+
+# Documentation
+
+### Methods
 - CollectionById - Returns collection by id.
 - CollectionListByIssuer - returns collections where issuer (creator) is equal to provided address
 - CollectionListByName - returns collections where name contains provided name
