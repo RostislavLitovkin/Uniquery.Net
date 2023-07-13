@@ -13,7 +13,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'MySolution.sln'
+      SOLUTION: 'Uniquery.sln'
 
     runs-on: ubuntu-latest
 
