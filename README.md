@@ -61,6 +61,26 @@ var nfts = await Uniquery.Rmrk.NftListByCollectionId(id);
 One of the major improvements over the original [Kodadot/Uniquery](https://github.com/kodadot/uniquery) js package is the inclusion of
 `Uniquery.Universal`
 
+Without `Uniquery.Universal` you would have to write something like this:
+
+```C#
+string issuerAddress = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
+var collections = new List<Collection>();
+collections.AddRange(await Uniquery.Rmrk.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.RmrkV2.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Unique.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Quartz.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Opal.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Basilisk.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Movr.CollectionListByIssuer(issuerAddress));
+collections.AddRange(await Uniquery.Glmr.CollectionListByIssuer(issuerAddress));
+```
+With `Uniquery.Universal` you can write this:
+```C#
+string issuerAddress = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
+var collections = Uniquery.Universal.CollectionListByOwner(issuerAddress);
+```
+
 # Documentation
 
 ### Methods
