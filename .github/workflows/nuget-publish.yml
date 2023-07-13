@@ -34,6 +34,8 @@ jobs:
     - name: Build
       run: dotnet build $SOLUTION --configuration Release --no-restore
       
-    - name: Publish
-      if: startsWith(github.ref, 'refs/heads/release')
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+    - name: Publish Nuget
+      uses: brandedoutcast/publish-nuget@v2.5.2  
+      with:
+       PROJECT_FILE_PATH: ./Uniquery/Uniquery.csproj
+       NUGET_KEY: ${{secrets.NUGET_API_KEY}} 
