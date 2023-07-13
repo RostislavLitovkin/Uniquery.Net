@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net;
 using System.Xml.Linq;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Substrate.NetApi;
 
 namespace Uniquery
 {
@@ -12,6 +14,8 @@ namespace Uniquery
         public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
             "https://api-opal.uniquescan.io/v1/graphql", new NewtonsoftJsonSerializer()
         );
+
+        const int SS58_PREFIX = 42;
 
         /// <summary>
         /// Returns collection by id.
@@ -77,7 +81,7 @@ namespace Uniquery
             int limit = 25,
             int offset = 0)
         {
-            var filter = new { owner = new { _eq = ownerAddress } };
+            var filter = new { owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) } };
 
             var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -114,7 +118,7 @@ namespace Uniquery
             int limit = 25,
             int offset = 0)
         {
-            var filter = new { owner = new { _eq = ownerAddress } };
+            var filter = new { owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
@@ -146,7 +150,7 @@ namespace Uniquery
             int limit = 25,
             int offset = 0)
         {
-            var filter = new { collection_owner = new { _eq = issuerAddress } };
+            var filter = new { collection_owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,

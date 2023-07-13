@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Substrate.NetApi;
 
 namespace Uniquery
 {
@@ -11,6 +13,8 @@ namespace Uniquery
         public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
             "https://squid.subsquid.io/snekk/graphql", new NewtonsoftJsonSerializer()
         );
+
+        const int SS58_PREFIX = 10041;
 
         /// <summary>
         /// Returns collection by id.
@@ -62,7 +66,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { issuer_eq = issuerAddress };
+            var filter = new { issuer_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) };
 
             var collections = await BasiliskCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -114,7 +118,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { currentOwner_eq = ownerAddress };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) };
 
             var collections = await BasiliskCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -313,7 +317,7 @@ namespace Uniquery
             int eventsLimit = 10,
             int offersLimit = 10)
         {
-            var filter = new { currentOwner_eq = address };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var nfts = await BasiliskNftService.GetNftEntitiesAsync(
                 filter,
@@ -398,7 +402,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "timestamp_DESC")
         {
-            var filter = new { caller_eq = address };
+            var filter = new { caller_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var events = await BasiliskEventService.GetEventEntitiesAsync(
                 filter,

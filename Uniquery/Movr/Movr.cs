@@ -1,8 +1,10 @@
 ﻿using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Substrate.NetApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +18,7 @@ namespace Uniquery
             "https://squid.subsquid.io/antick/v/001-rc0/graphql", new NewtonsoftJsonSerializer()
         );
 
+        const int SS58_PREFIX = 1285;
 
         // COLLECTIONS FUNCTIONS
 
@@ -69,7 +72,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { issuer_eq = issuerAddress };
+            var filter = new { issuer_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) };
 
             var collections = await MovrCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -121,7 +124,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { currentOwner_eq = ownerAddress };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) };
 
             var collections = await MovrCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -312,7 +315,7 @@ namespace Uniquery
             bool forSale = false,
             int eventsLimit = 10)
         {
-            var filter = new { currentOwner_eq = address };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var nfts = await MovrNftService.GetNftEntitiesAsync(
                 filter,
@@ -397,7 +400,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "timestamp_DESC")
         {
-            var filter = new { caller_eq = address };
+            var filter = new { caller_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var events = await MovrEventService.GetEventEntitiesAsync(
                 filter,

@@ -714,7 +714,7 @@ async Task MovrTest()
 }
 
 
-var nfts = await Uniquery.Rmrk.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
+var nfts = await Uniquery.Universal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
 
 foreach (var nft in nfts)
 {

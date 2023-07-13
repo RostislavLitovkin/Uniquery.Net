@@ -66,7 +66,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { issuer_eq = issuerAddress };
+            var filter = new { issuer_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) };
 
             var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -118,7 +118,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { currentOwner_eq = ownerAddress };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) };
 
             var collections = await RmrkCollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -402,7 +402,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "timestamp_DESC")
         {
-            var filter = new { caller_eq = address };
+            var filter = new { caller_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var events = await RmrkEventService.GetEventEntitiesAsync(
                 filter,

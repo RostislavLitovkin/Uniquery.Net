@@ -1,8 +1,10 @@
 ﻿using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using Substrate.NetApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +15,8 @@ namespace Uniquery
         public readonly static GraphQLHttpClient client = new GraphQLHttpClient(
             "https://squid.subsquid.io/marck/v/v2/graphql", new NewtonsoftJsonSerializer()
         );
+
+        const int SS58_PREFIX = 2;
 
         /// <summary>
         /// Returns collection by id.
@@ -64,7 +68,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { issuer_eq = issuerAddress };
+            var filter = new { issuer_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) };
 
             var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -112,12 +116,12 @@ namespace Uniquery
         /// </example>
         /// </summary>
         public static async Task<List<RmrkV2Collection>> CollectionListByOwner(
-            string owner,
+            string ownerAddress,
             int limit = 25,
             int offset = 0,
             string orderBy = "updatedAt_DESC")
         {
-            var filter = new { currentOwner_eq = owner };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) };
 
             var collections = await RmrkV2CollectionService.GetCollectionEntitiesAsync(
                 filter,
@@ -305,7 +309,7 @@ namespace Uniquery
             int eventsLimit = 10,
             int emotesLimit = 10)
         {
-            var filter = new { currentOwner_eq = address };
+            var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var nfts = await RmrkV2NftService.GetNftEntitiesAsync(
                 filter,
@@ -390,7 +394,7 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "timestamp_DESC")
         {
-            var filter = new { caller_eq = address };
+            var filter = new { caller_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
             var events = await RmrkV2EventService.GetEventEntitiesAsync(
                 filter,
