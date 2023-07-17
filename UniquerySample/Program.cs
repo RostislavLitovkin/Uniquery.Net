@@ -713,13 +713,52 @@ async Task MovrTest()
     }
 }
 
-
-var nfts = await Uniquery.Universal.NftListByOwner("5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y");
-
-foreach (var nft in nfts)
+async Task AcalaTest()
 {
-    Console.WriteLine(nft);
+    var nfts = await Uniquery.Acala.NftListByCollectionId("A4EC02A6BEF317A726-ACCTT");
+    Console.WriteLine("Hello");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+    Console.WriteLine("Hello2");
+
+    nfts = await Uniquery.Acala.NftListByName("MechMind");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+    Console.WriteLine("Hello3");
+
+    /*nfts = await Uniquery.Acala.NftList(5, 83);
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+    Console.WriteLine("Hello4");*/
+
+    nfts = await Uniquery.Acala.NftListByMetadataId("ipfs://ipfs/bafkreib26sbxwxfw4ydidc4a6zkm2w2obha7kz5ci3zo2rp46cqrjqpq4u");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
+    Console.WriteLine("Hello5");
+
+    nfts = await Uniquery.Acala.NftListByOwner("EyhuHahinimJJSTSuN2JNru3EFL3ry9dGKDfefbXUtJzjnb");
+
+    foreach (var nft in nfts)
+    {
+        Console.WriteLine(nft);
+    }
 }
+
+
+await AcalaTest();
+
 
 Console.WriteLine("\nDone");
 Console.ReadKey();

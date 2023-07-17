@@ -25,6 +25,7 @@
     <None Remove="Quartz\" />
     <None Remove="Opal\" />
     <None Remove="Universal\" />
+    <None Remove="OnFinality\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rmrk\" />
@@ -34,6 +35,7 @@
     <Folder Include="Quartz\" />
     <Folder Include="Opal\" />
     <Folder Include="Universal\" />
+    <Folder Include="OnFinality\" />
   </ItemGroup>
 
   <ItemGroup>

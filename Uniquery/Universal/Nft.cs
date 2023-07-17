@@ -22,7 +22,7 @@ namespace Uniquery
         public string? CurrentOwner { get; set; }
 
         [JsonPropertyName("meta")]
-        public RmrkMetadata? Meta { get; set; } = new RmrkMetadata();
+        public RmrkMetadata Meta { get; set; } = new RmrkMetadata();
 
         [JsonPropertyName("createdAt")]
         public DateTime CreatedAt { get; set; }
