@@ -293,6 +293,33 @@ namespace Uniquery
             {
 
             }
+            try
+            {
+                var nft = await Acala.NftById(id, limit, offset);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var nft = await Astar.NftById(id, limit, offset);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                var nft = await Shiden.NftById(id, limit, offset);
+                nfts.Add(nft);
+            }
+            catch
+            {
+
+            }
 
             return nfts;
         }
@@ -327,6 +354,9 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftListByCollectionId(collectionId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Acala.NftListByCollectionId(collectionId, limit, offset));
+            nfts.AddRange(await Astar.NftListByCollectionId(collectionId, limit, offset));
+            nfts.AddRange(await Shiden.NftListByCollectionId(collectionId, limit, offset));
 
             return nfts;
         }
@@ -357,6 +387,9 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftListByName(name, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Acala.NftListByName(name, limit, offset));
+            nfts.AddRange(await Astar.NftListByName(name, limit, offset));
+            nfts.AddRange(await Shiden.NftListByName(name, limit, offset));
 
             return nfts;
         }
@@ -385,6 +418,9 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftListByMetadataId(metadataId, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Acala.NftListByMetadataId(metadataId, limit, offset));
+            nfts.AddRange(await Astar.NftListByMetadataId(metadataId, limit, offset));
+            nfts.AddRange(await Shiden.NftListByMetadataId(metadataId, limit, offset));
 
             return nfts;
         }
@@ -413,6 +449,7 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftListByCollectionMetadataId(collectionMetadataId, limit, offset, orderBy, forSale, eventsLimit));
+            // Acala, Astar, Shiden are not supported.
 
             return nfts;
         }
@@ -443,6 +480,9 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Acala.NftListByOwner(address, limit, offset));
+            nfts.AddRange(await Astar.NftListByOwner(address, limit, offset));
+            nfts.AddRange(await Shiden.NftListByOwner(address, limit, offset));
 
             return nfts;
         }
@@ -472,6 +512,9 @@ namespace Uniquery
             nfts.AddRange(await Basilisk.NftList(limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Glmr.NftList(limit, offset, orderBy, forSale, eventsLimit));
             nfts.AddRange(await Movr.NftList(limit, offset, orderBy, forSale, eventsLimit));
+            nfts.AddRange(await Acala.NftList(limit, offset));
+            nfts.AddRange(await Astar.NftList(limit, offset));
+            nfts.AddRange(await Shiden.NftList(limit, offset));
 
             return nfts;
         }
