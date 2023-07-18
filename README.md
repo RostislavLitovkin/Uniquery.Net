@@ -10,7 +10,7 @@ This is a c# implementation of [Uniquery](https://github.com/kodadot/uniquery) w
     - confusing method `getClient("name")` has been replaced with static functions.
     - All types have been converted to native c# classes
 - `Uniquery.Universal` - very cozy way to query data from multiple endpoints at the same time.
-- Inclusion of new Networks/NftStandards, that are missing in the original uniquery: **Unique, Quartz, Opal**
+- Inclusion of new Networks/NftStandards, that are missing in the original uniquery: **Acala, Astar, Shiden, Unique, Quartz, Opal**
 - More flexible parameters
 
 # Instalation
@@ -30,6 +30,9 @@ dotnet add package Uniquery
 - [x] Unique
 - [x] Quartz
 - [x] Opal
+- [x] Acala (OnFinality BETA)
+- [x] Astar (OnFinality BETA)
+- [x] Shiden (OnFinality BETA)
 
 # Motivation
 
@@ -64,21 +67,24 @@ One of the major improvements over the original [Kodadot/Uniquery](https://githu
 Without `Uniquery.Universal` you would have to write something like this:
 
 ```C#
-string issuerAddress = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
-var collections = new List<Collection>();
-collections.AddRange(await Uniquery.Rmrk.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.RmrkV2.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Unique.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Quartz.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Opal.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Basilisk.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Movr.CollectionListByIssuer(issuerAddress));
-collections.AddRange(await Uniquery.Glmr.CollectionListByIssuer(issuerAddress));
+string address = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
+List<Nft> nfts = new List<Nft>();
+nfts.AddRange(await Rmrk.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+nfts.AddRange(await RmrkV2.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+nfts.AddRange(await Unique.NftListByOwner(address, limit, offset));
+nfts.AddRange(await Quartz.NftListByOwner(address, limit, offset));
+nfts.AddRange(await Opal.NftListByOwner(address, limit, offset));
+nfts.AddRange(await Basilisk.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+nfts.AddRange(await Glmr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+nfts.AddRange(await Movr.NftListByOwner(address, limit, offset, orderBy, forSale, eventsLimit));
+nfts.AddRange(await Acala.NftListByOwner(address, limit, offset));
+nfts.AddRange(await Astar.NftListByOwner(address, limit, offset));
+nfts.AddRange(await Shiden.NftListByOwner(address, limit, offset));
 ```
 With `Uniquery.Universal` you can write this:
 ```C#
-string issuerAddress = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
-var collections = Uniquery.Universal.CollectionListByOwner(issuerAddress);
+string address = "5HGuhwGJZC5zvWQm1kGpobJxwAv6bUtKyLGjKL7m2YaJtmDQ";
+List<Nft> nfts = Uniquery.Universal.NftListByOwner(address);
 ```
 
 # Documentation
@@ -110,6 +116,11 @@ var collections = Uniquery.Universal.CollectionListByOwner(issuerAddress);
 In-code documentation with wispering and examples is also included:
 <img width="1003" alt="Screenshot 2023-07-07 at 11 49 19" src="https://github.com/RostislavLitovkin/Uniquery.Net/assets/77352013/d543d139-d508-4e90-a497-34b3e0b18785">
 
+# Techstack used
+- C#, graphql
+- Subsquid api
+- Unique network api
+- OnFinality Unified NFT api (BETA)
 
 # Inspiration
 
