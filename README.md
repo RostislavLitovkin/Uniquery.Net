@@ -1,3 +1,5 @@
+Everything in this repo has been coded from scratch during the Polkadot Global Series hackathon (3 – 23 July 2023).
+
 # Uniquery.Net
 
 Easy to use tool for querying indexed NFT data.
