@@ -732,13 +732,13 @@ async Task AcalaTest()
     }
     Console.WriteLine("Hello3");
 
-    /*nfts = await Uniquery.Acala.NftList(5, 83);
+    nfts = await Uniquery.Acala.NftList(5, 83);
 
     foreach (var nft in nfts)
     {
         Console.WriteLine(nft);
     }
-    Console.WriteLine("Hello4");*/
+    Console.WriteLine("Hello4");
 
     nfts = await Uniquery.Acala.NftListByMetadataId("ipfs://ipfs/bafkreib26sbxwxfw4ydidc4a6zkm2w2obha7kz5ci3zo2rp46cqrjqpq4u");
 
