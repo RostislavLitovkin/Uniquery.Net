@@ -17,7 +17,7 @@ This is a c# implementation of [Uniquery](https://github.com/kodadot/uniquery) w
 - Inclusion of new Networks/NftStandards, that are missing in the original uniquery: **Acala, Astar, Shiden, Unique, Quartz, Opal**
 - More flexible parameters
 
-# Instalation
+# Installation
 
 Nuget package: https://www.nuget.org/packages/Uniquery/
 ```
