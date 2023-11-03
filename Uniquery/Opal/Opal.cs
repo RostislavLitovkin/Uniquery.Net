@@ -33,14 +33,16 @@ namespace Uniquery
         public static async Task<UniqueCollection> CollectionById(
             int id,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection_id = new { _eq = id } };
 
             var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             if (!collections.Any())
@@ -55,22 +57,30 @@ namespace Uniquery
         public static async Task<List<UniqueCollection>> CollectionListByIssuer(
             string issuerAddress,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
-            return await CollectionListByOwner(issuerAddress, limit, offset);
+            return await CollectionListByOwner(
+                issuerAddress,
+                limit,
+                offset,
+                token
+                );
         }
 
         public static async Task<List<UniqueCollection>> CollectionListByName(
             string name,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { name = new { _eq = name } };
 
             var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return collections;
@@ -79,14 +89,16 @@ namespace Uniquery
         public static async Task<List<UniqueCollection>> CollectionListByOwner(
             string ownerAddress,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) } };
 
             var collections = await OpalCollectionService.GetCollectionEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return collections;
@@ -95,14 +107,16 @@ namespace Uniquery
         public static async Task<UniqueNft> NftById(
             int id,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { token_id = new { _eq = id } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             if (!nfts.Any())
@@ -116,14 +130,16 @@ namespace Uniquery
         public static async Task<List<UniqueNft>> NftListByOwner(
             string ownerAddress,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -132,14 +148,16 @@ namespace Uniquery
         public static async Task<List<UniqueNft>> NftListByCollectionId(
             int collectionId,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection_id = new { _eq = collectionId } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -148,14 +166,16 @@ namespace Uniquery
         public static async Task<List<UniqueNft>> NftListByIssuer(
             string issuerAddress,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection_owner = new { _eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -164,14 +184,16 @@ namespace Uniquery
         public static async Task<List<UniqueNft>> NftListByName(
             string name,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection_name = new { _eq = name } };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -179,14 +201,16 @@ namespace Uniquery
 
         public static async Task<List<UniqueNft>> NftList(
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new {  };
 
             var nfts = await OpalNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -207,14 +231,16 @@ namespace Uniquery
 
         public static async Task<List<UniqueEvent>> EventList(
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new {  };
 
             var events = await OpalEventService.GetEventEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return events;

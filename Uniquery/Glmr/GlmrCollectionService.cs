@@ -20,7 +20,8 @@ namespace Uniquery
             object filter,
             int limit = 25,
             int offset = 0,
-            string orderBy = "updatedAt_DESC"
+            string orderBy = "updatedAt_DESC",
+            CancellationToken token = default(CancellationToken)
         )
         {
             GraphQLRequest request = new GraphQLRequest
@@ -90,7 +91,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Glmr.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Glmr.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

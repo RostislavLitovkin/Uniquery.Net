@@ -21,7 +21,8 @@ namespace Uniquery
         public static async Task<List<UniqueCollection>> GetCollectionEntitiesAsync(
             object filter,
             int limit = 25,
-            int offset = 0
+            int offset = 0,
+            CancellationToken token = default(CancellationToken)
         )
         {
             GraphQLRequest request = new GraphQLRequest
@@ -73,7 +74,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Unique.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Unique.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

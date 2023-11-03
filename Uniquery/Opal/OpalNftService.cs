@@ -24,7 +24,8 @@ namespace Uniquery
         public static async Task<List<UniqueNft>> GetNftEntitiesAsync(
             object filter,
             int limit = 25,
-            int offset = 0
+            int offset = 0,
+            CancellationToken token = default(CancellationToken)
         )
         {
             GraphQLRequest request = new GraphQLRequest
@@ -71,7 +72,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Opal.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Opal.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

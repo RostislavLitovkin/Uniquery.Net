@@ -28,7 +28,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken)
         )
         {
 
@@ -102,7 +103,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Movr.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Movr.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

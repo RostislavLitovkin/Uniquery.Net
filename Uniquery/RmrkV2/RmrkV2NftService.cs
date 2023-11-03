@@ -24,7 +24,8 @@ namespace Uniquery
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
             int eventsLimit = 10,
-            int emotesLimit = 10
+            int emotesLimit = 10,
+            CancellationToken token = default(CancellationToken)
         )
         {
             GraphQLRequest request = new GraphQLRequest
@@ -116,7 +117,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await RmrkV2.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await RmrkV2.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

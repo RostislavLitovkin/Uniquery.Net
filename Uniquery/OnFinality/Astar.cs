@@ -28,14 +28,16 @@ namespace Uniquery
         public static async Task<OnFinalityNft> NftById(
             string id,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { id = new { equalTo = id }, collection = new { networkId = new { equalTo = NETWORK_ID } } };
 
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             if (!nfts.Any())
@@ -57,14 +59,16 @@ namespace Uniquery
         public static async Task<List<OnFinalityNft>> NftListByCollectionId(
             string collectionId,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collectionId = new { equalTo = collectionId }, collection = new { networkId = new { equalTo = NETWORK_ID } } };
 
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -81,14 +85,16 @@ namespace Uniquery
         public static async Task<List<OnFinalityNft>> NftListByName(
             string name,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { metadata = new { name = new { includesInsensitive = name } }, collection = new { networkId = new { equalTo = NETWORK_ID } } };
 
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -105,14 +111,16 @@ namespace Uniquery
         public static async Task<List<OnFinalityNft>> NftListByMetadataId(
             string metadataId,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { metadata = new { id = new { equalTo = metadataId } }, collection = new { networkId = new { equalTo = NETWORK_ID } } };
 
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -129,7 +137,8 @@ namespace Uniquery
         public static async Task<List<OnFinalityNft>> NftListByOwner(
             string ownerAddress,
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             string pubkey = ownerAddress.StartsWith("0x") ? ownerAddress : Utils.Bytes2HexString(Utils.GetPublicKeyFrom(ownerAddress)).ToLower();
 
@@ -138,7 +147,8 @@ namespace Uniquery
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;
@@ -154,14 +164,16 @@ namespace Uniquery
         /// </summary>
         public static async Task<List<OnFinalityNft>> NftList(
             int limit = 25,
-            int offset = 0)
+            int offset = 0,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection = new { networkId = new { equalTo = NETWORK_ID } } };
 
             var nfts = await OnFinalityNftService.GetNftEntitiesAsync(
                 filter,
                 limit,
-                offset
+                offset,
+                token
                 );
 
             return nfts;

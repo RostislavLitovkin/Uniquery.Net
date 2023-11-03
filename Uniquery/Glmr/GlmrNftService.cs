@@ -26,7 +26,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             int eventsLimit = 10,
-            bool forSale = false
+            bool forSale = false,
+            CancellationToken token = default(CancellationToken)
         )
         {
 
@@ -113,7 +114,7 @@ namespace Uniquery
                 },
             };
 
-            var graphQLResponse = await Glmr.client.SendQueryAsync<ResponseType>(request);
+            var graphQLResponse = await Glmr.client.SendQueryAsync<ResponseType>(request, token);
 
             if (graphQLResponse.Errors != null && graphQLResponse.Errors.Length > 0)
             {

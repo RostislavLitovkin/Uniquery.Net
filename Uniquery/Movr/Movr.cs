@@ -39,7 +39,8 @@ namespace Uniquery
             string id,
             int limit = 25,
             int offset = 0,
-            string orderBy = "updatedAt_DESC")
+            string orderBy = "updatedAt_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { id_eq = id };
 
@@ -47,7 +48,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             if (!collections.Any())
@@ -70,7 +72,8 @@ namespace Uniquery
             string issuerAddress,
             int limit = 25,
             int offset = 0,
-            string orderBy = "updatedAt_DESC")
+            string orderBy = "updatedAt_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { issuer_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(issuerAddress), SS58_PREFIX) };
 
@@ -78,7 +81,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             return collections;
@@ -96,7 +100,8 @@ namespace Uniquery
             string collectionName,
             int limit = 25,
             int offset = 0,
-            string orderBy = "updatedAt_DESC")
+            string orderBy = "updatedAt_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { name_containsInsensitive = collectionName };
 
@@ -104,7 +109,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             return collections;
@@ -122,7 +128,8 @@ namespace Uniquery
             string ownerAddress,
             int limit = 25,
             int offset = 0,
-            string orderBy = "updatedAt_DESC")
+            string orderBy = "updatedAt_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(ownerAddress), SS58_PREFIX) };
 
@@ -130,7 +137,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             return collections;
@@ -158,7 +166,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { id_eq = id };
 
@@ -168,7 +177,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             if (!nfts.Any())
@@ -193,7 +203,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection = new { id_eq = collectionId } };
 
@@ -203,7 +214,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -223,7 +235,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { name_containsInsensitive = name };
 
@@ -233,7 +246,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -253,7 +267,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { metadata_eq = metadataId };
 
@@ -263,7 +278,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -283,7 +299,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { collection = new { metadata_eq = collectionMetadataId } };
 
@@ -293,7 +310,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -313,7 +331,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { currentOwner_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
@@ -323,7 +342,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -342,7 +362,8 @@ namespace Uniquery
             int offset = 0,
             string orderBy = "updatedAt_DESC",
             bool forSale = false,
-            int eventsLimit = 10)
+            int eventsLimit = 10,
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { };
 
@@ -352,7 +373,8 @@ namespace Uniquery
                 offset,
                 orderBy,
                 forSale,
-                eventsLimit
+                eventsLimit,
+                token
                 );
 
             return nfts;
@@ -372,7 +394,8 @@ namespace Uniquery
         public static async Task<List<MovrEvent>> EventList(
             int limit = 25,
             int offset = 0,
-            string orderBy = "timestamp_DESC")
+            string orderBy = "timestamp_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { };
 
@@ -380,7 +403,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             return events;
@@ -398,7 +422,8 @@ namespace Uniquery
             string address,
             int limit = 25,
             int offset = 0,
-            string orderBy = "timestamp_DESC")
+            string orderBy = "timestamp_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { caller_eq = Utils.GetAddressFrom(Utils.GetPublicKeyFrom(address), SS58_PREFIX) };
 
@@ -406,7 +431,8 @@ namespace Uniquery
                 filter,
                 limit,
                 offset,
-                orderBy
+                orderBy,
+                token
                 );
 
             return events;
@@ -424,7 +450,8 @@ namespace Uniquery
             string collectionId,
             int limit = 25,
             int offset = 0,
-            string orderBy = "timestamp_DESC")
+            string orderBy = "timestamp_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { nft = new { collection = new { id_eq = collectionId } } };
 
@@ -432,7 +459,8 @@ namespace Uniquery
                     filter,
                     limit,
                     offset,
-                    orderBy
+                    orderBy,
+                    token
                     );
 
             return events;
@@ -450,7 +478,8 @@ namespace Uniquery
             MovrInteraction interaction,
             int limit = 25,
             int offset = 0,
-            string orderBy = "timestamp_DESC")
+            string orderBy = "timestamp_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { interaction_eq = interaction };
 
@@ -458,7 +487,8 @@ namespace Uniquery
                     filter,
                     limit,
                     offset,
-                    orderBy
+                    orderBy,
+                    token
                     );
 
             return events;
@@ -476,7 +506,8 @@ namespace Uniquery
             string id,
             int limit = 25,
             int offset = 0,
-            string orderBy = "timestamp_DESC")
+            string orderBy = "timestamp_DESC",
+            CancellationToken token = default(CancellationToken))
         {
             var filter = new { nft = new { id_eq = id } };
 
@@ -484,7 +515,8 @@ namespace Uniquery
                     filter,
                     limit,
                     offset,
-                    orderBy
+                    orderBy,
+                    token
                     );
 
             return events;

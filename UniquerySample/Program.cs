@@ -757,7 +757,11 @@ async Task AcalaTest()
 }
 
 
+await RmrkTest();
 await AcalaTest();
+
+await UniqueTest();
+await UniversalTest();
 
 
 Console.WriteLine("\nDone");
